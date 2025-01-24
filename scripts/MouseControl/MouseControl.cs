@@ -56,8 +56,8 @@ public partial class MouseControl : Node2D
         {
             if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
             {
-				Scale = new Vector2(Scale.X, Scale.Y * 0.8f);
-				Position = new Vector2(Position.X, Position.Y + 10);
+				Scale = new Vector2(originalScale.X, originalScale.Y * 0.8f);
+				Position = new Vector2(originalPosition.X, originalPosition.Y + 10);
 
 				isScaling = true;
                 timer = 0f;

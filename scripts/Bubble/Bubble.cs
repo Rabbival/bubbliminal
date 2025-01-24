@@ -19,7 +19,7 @@ public partial class Bubble : Sprite2D
 	[Export]
 	float _despawnDuration = 0.15f;
 
-	float _awaitTimeIncrementationInMillis = 60;
+	public int _awaitTimeIncrementationInMillis = 60;
 
 	public bool _controlledBubble;
 	Option<Tween> _activePositionTween;
@@ -45,22 +45,22 @@ public partial class Bubble : Sprite2D
 		if (_deemedForDestruction) return new ActionPerformed(false);
 
 		bool acted = false;
+		infector.DeclarePositionTweenDone();
 		if (_bubbleType != infector._bubbleType){
 			BubbleType temp = _bubbleType;
 			_bubbleType = infector._bubbleType;
 			infector._bubbleType = temp;
 			acted = true;
 		}
-		infector.DeclarePositionTweenDone();
 		return new ActionPerformed(acted);
 	}
 
 	private void OnBubbleTypeSet(BubbleType bubbleType){
 		if (_deemedForDestruction) return;
 
+		DebugPrinter.Print("Setting state to: " + bubbleType + " for: " + Name, LogCategory.Bubble);
 		HandleSpecialStateTransitions(_bubbleTypeValue, bubbleType);
 		_bubbleTypeValue = bubbleType;
-		DebugPrinter.Print("Set state to: " + bubbleType + " for: " + Name, LogCategory.Bubble);
 	}
 
 	private void HandleSpecialStateTransitions(BubbleType oldState, BubbleType newState){
@@ -80,10 +80,7 @@ public partial class Bubble : Sprite2D
 
 		_deemedForDestruction = true;
 		await Task.Delay(awaitTimeInMillis);
-		EmitSignal(
-			SignalName.ChainDestructionInitiated, this, 
-			awaitTimeInMillis + _awaitTimeIncrementationInMillis
-		);
+		EmitSignal(SignalName.ChainDestructionInitiated, this, awaitTimeInMillis);
 		ExplodeThenDestory();
 	}
 
@@ -120,7 +117,7 @@ public partial class Bubble : Sprite2D
 			targetPosition,
 			fullPositionDelta,
 			new Callable(this, MethodName.SetPosition),
-			_activePositionTween,
+			Option.None<Tween>(),
 			Option.Some(DeclarePositionTweenDone),
 			tweenDuration
 		));
@@ -172,10 +169,11 @@ public partial class Bubble : Sprite2D
 	}
 
 	private void DeclarePositionTweenDone(){
-		DebugPrinter.Print("Position tween done for: " + Name, LogCategory.Bubble);	
-
-		_activePositionTween.MatchSome(tween => tween.Kill());
-		_activePositionTween = Option.None<Tween>();
-		EmitSignal(SignalName.PositionTweenDone, this);
+		_activePositionTween.MatchSome(tween => {
+			tween.Kill();
+			_activePositionTween = Option.None<Tween>();
+			EmitSignal(SignalName.PositionTweenDone, this);
+			DebugPrinter.Print("Position tween done for: " + Name, LogCategory.Bubble);	
+		});
 	}
 }

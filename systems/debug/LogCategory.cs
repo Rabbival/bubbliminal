@@ -3,5 +3,6 @@ public enum LogCategory {
     StitchGame,
     Bubble,
     BubbleCollision,
-    BubbleContainer
+    BubbleContainer,
+    ChanceManager
 }

@@ -7,14 +7,19 @@ public partial class BubblesContainer : Node2D
 	[Export]
 	Bubble _firstControlledBubble;
 	[Export]
-	float _bubbleShotDurationMultiplier = 0.2f;
+	float _bubbleShotDurationMultiplier = 0.14f;
+	[Export]
+	PackedScene _bubbleScene;
+
 	Option<Bubble> _controlledBubble;
+	Vector2 _spawnPosition;
 
 	public override void _Ready()
 	{
 		_firstControlledBubble._controlledBubble = true;
 		_controlledBubble = Option.Some(_firstControlledBubble);
 		ListenForControlledBubbleMovementDone(_firstControlledBubble);
+		_spawnPosition = _firstControlledBubble.GlobalPosition;
 	}
 
     public override void _Input(InputEvent @event)
@@ -48,7 +53,17 @@ public partial class BubblesContainer : Node2D
 	private void OnControlledBubbleMovementDone(Bubble controlledBubble)
 	{
 		controlledBubble._controlledBubble = false;
-		_controlledBubble = Option.None<Bubble>();
-		DebugPrinter.Print("Movement done for " + controlledBubble.Name, LogCategory.BubbleContainer);
+		Bubble newbornBubble = SpawnNewControlledBubble();
+		_controlledBubble = Option.Some(newbornBubble);
+		ListenForControlledBubbleMovementDone(newbornBubble);
 	}
+
+	private Bubble SpawnNewControlledBubble(){
+        Bubble newbornBubble = _bubbleScene.Instantiate<Bubble>();
+		newbornBubble.Position = _spawnPosition;
+		newbornBubble._controlledBubble = true;
+        newbornBubble._bubbleType = ChanceManager.GetNextBubbleType();
+        AddChild(newbornBubble);
+        return newbornBubble;
+    }
 }

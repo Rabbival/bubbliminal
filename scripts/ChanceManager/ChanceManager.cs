@@ -3,58 +3,54 @@ using System;
 
 public partial class ChanceManager : Node
 {
-	private float chanceRegular = 0.4f;
-    private float chanceFire = 0.3f;
-    private float chanceOil = 0.3f;
-	private Random random = new Random();
+	private static float chanceRegular = 0.4f;
+    private static float chanceFire = 0.3f;
+    private static float chanceOil = 0.3f;
+	private static Random random = new Random();
 
-
-	public string GetNextBallType()
+	public static BubbleType GetNextBubbleType()
     {
         float randomValue = (float)random.NextDouble();
+        BubbleType nextType = BubbleType.Neutral;
 
-        if (randomValue < chanceRegular)
-        {
-            UpdateChances("regular");
-            return "Regular";
+        if (randomValue > chanceRegular){
+            if (randomValue > chanceRegular + chanceFire){
+                nextType = BubbleType.Oil;
+            } else {
+                nextType = BubbleType.Fire;
+            }
         }
-        else if (randomValue < chanceRegular + chanceFire)
-        {
-            UpdateChances("fire");
-            return "Fire";
-        }
-        else
-        {
-            UpdateChances("oil");
-            return "Oil";
-        }
+
+        UpdateChances(nextType);
+        PrintChosenType(nextType);
+        return nextType;
     }
 
-	 private void UpdateChances(string ballType)
+	 private static void UpdateChances(BubbleType bubbleType)
     {
         float decreaseFactor = 0.1f; 
 
-        if (ballType == "regular")
-        {
-            chanceRegular = Mathf.Max(0.1f, chanceRegular - decreaseFactor); 
-            chanceFire = Mathf.Min(0.4f, chanceFire + decreaseFactor);     
-            chanceOil = Mathf.Min(0.4f, chanceOil + decreaseFactor);        
-        }
-        else if (ballType == "fire")
-        {
-            chanceFire = Mathf.Max(0.1f, chanceFire - decreaseFactor);
-            chanceRegular = Mathf.Min(0.4f, chanceRegular + decreaseFactor);
-            chanceOil = Mathf.Min(0.4f, chanceOil + decreaseFactor);
-        }
-        else if (ballType == "oil")
-        {
-            chanceOil = Mathf.Max(0.1f, chanceOil - decreaseFactor);
-            chanceRegular = Mathf.Min(0.4f, chanceRegular + decreaseFactor);
-            chanceFire = Mathf.Min(0.4f, chanceFire + decreaseFactor);
+        switch (bubbleType){
+            case BubbleType.Neutral:
+                chanceRegular = Mathf.Max(0.1f, chanceRegular - decreaseFactor); 
+                chanceFire = Mathf.Min(0.4f, chanceFire + decreaseFactor);     
+                chanceOil = Mathf.Min(0.4f, chanceOil + decreaseFactor);        
+                break;
+            case BubbleType.Fire:
+                chanceFire = Mathf.Max(0.1f, chanceFire - decreaseFactor);
+                chanceRegular = Mathf.Min(0.4f, chanceRegular + decreaseFactor);
+                chanceOil = Mathf.Min(0.4f, chanceOil + decreaseFactor);
+                break;
+            case BubbleType.Oil:
+                chanceOil = Mathf.Max(0.1f, chanceOil - decreaseFactor);
+                chanceRegular = Mathf.Min(0.4f, chanceRegular + decreaseFactor);
+                chanceFire = Mathf.Min(0.4f, chanceFire + decreaseFactor);
+                break;
         }
 		NormalizeChances();
     }
-	private void NormalizeChances()
+
+	private static void NormalizeChances()
     {
         float total = chanceRegular + chanceFire + chanceOil;
         chanceRegular /= total;
@@ -62,27 +58,12 @@ public partial class ChanceManager : Node
         chanceOil /= total;
     }
 
- 	public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventMouseButton mouseEvent)
-        {
-            if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed){
-            	string ballType = GetNextBallType();
-            	// GD.Print("The next ball type is: " + ballType);
-				// GD.Print("The chance Regular is: "+ chanceRegular);
-				// GD.Print("The chance Fire is: "+ chanceFire);
-				// GD.Print("The chance Oil is: "+ chanceOil);
-			}
-        }
+    private static void PrintChosenType(BubbleType bubbleType){
+        DebugPrinter.Print("The next ball type is: " + bubbleType, LogCategory.ChanceManager);
+        DebugPrinter.Print("The chances are: " + 
+            chanceRegular + ", " + 
+            chanceFire + ", " + 
+            chanceOil, 
+        LogCategory.ChanceManager);
     }
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 }
