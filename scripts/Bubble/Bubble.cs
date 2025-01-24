@@ -7,7 +7,7 @@ public partial class Bubble : Sprite2D
 {
 	[Export]
 	BubbleType _bubbleTypeValue;
-	BubbleType _bubbleType{
+	public BubbleType _bubbleType{
 		get => _bubbleTypeValue;
 		set => OnBubbleTypeSet(value);
 	}
@@ -17,14 +17,19 @@ public partial class Bubble : Sprite2D
 
 	public bool _controlledBubble;
 	Option<Tween> _activePositionTween;
+	bool _deemedForDestruction;
 
 	[Signal]
 	public delegate void PositionTweenDoneEventHandler(Bubble bubble);
+
+	[Signal]
+	public delegate void ChainDestructionInitiatedEventHandler(Bubble bubble);
 	
 	public override void _Ready()
 	{
 		base._Ready();
 		_controlledBubble = false;
+		_deemedForDestruction = false;
 		_activePositionTween = Option.None<Tween>();
 		SetColorByBubbleType(_bubbleTypeValue);
 	}
@@ -32,30 +37,11 @@ public partial class Bubble : Sprite2D
 	public ActionPerformed Infect(Bubble infector)
 	{
 		bool acted = false;
-		switch (infector._bubbleType){
-			case BubbleType.Neutral:
-				if (_bubbleType == BubbleType.Oil){
-					infector._bubbleType = BubbleType.Oil;
-					acted = true;
-				}
-				break;
-			case BubbleType.Fire:
-				if (_bubbleType == BubbleType.Oil)
-				{
-					_bubbleType = BubbleType.Fire;
-					acted = true;
-				}
-				break;
-			case BubbleType.Oil:
-				if (_bubbleType == BubbleType.Fire)
-				{
-					infector._bubbleType = BubbleType.Fire;
-					acted = true;
-				}else if (_bubbleType == BubbleType.Neutral){
-					_bubbleType = BubbleType.Oil;
-					acted = true;
-				}
-				break;
+		if (_bubbleType != infector._bubbleType){
+			BubbleType temp = _bubbleType;
+			_bubbleType = infector._bubbleType;
+			infector._bubbleType = temp;
+			acted = true;
 		}
 		infector.DeclarePositionTweenDone();
 		return new ActionPerformed(acted);
@@ -63,8 +49,29 @@ public partial class Bubble : Sprite2D
 
 	private void OnBubbleTypeSet(BubbleType bubbleType){
 		SetColorByBubbleType(bubbleType);
+		HandleSpecialStateTransitions(_bubbleTypeValue, bubbleType);
 		_bubbleTypeValue = bubbleType;
 		DebugPrinter.Print("Set state to: " + bubbleType + " for: " + Name, LogCategory.Bubble);
+	}
+
+	private void HandleSpecialStateTransitions(BubbleType oldState, BubbleType newState){
+		if (oldState == BubbleType.Oil && newState == BubbleType.Fire){
+			ChainDestruct();
+		}else if (oldState == BubbleType.Fire && newState == BubbleType.Oil){
+			ChainDestruct();
+		}else if (oldState == BubbleType.Neutral && newState == BubbleType.Fire){
+			QueueFree();
+		}else if (oldState == BubbleType.Fire && newState == BubbleType.Neutral){
+			QueueFree();
+		}
+	}
+
+	public void ChainDestruct(){
+		if (!_deemedForDestruction){
+			_deemedForDestruction = true;
+			QueueFree();
+			EmitSignal(SignalName.ChainDestructionInitiated, this);
+		}
 	}
 	
 	private void SetColorByBubbleType(BubbleType bubbleType)

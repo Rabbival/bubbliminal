@@ -1,5 +1,7 @@
 using Godot;
+using Godot.Collections;
 using System;
+using System.Collections.Generic;
 
 [GlobalClass]
 public partial class BubbleCollisionDetector : Area2D
@@ -11,6 +13,7 @@ public partial class BubbleCollisionDetector : Area2D
         base._Ready();
 		_parentBubble = GetParent<Bubble>();
 		BodyEntered += (Node2D body) => OnBodyEntered(body);
+		_parentBubble.ChainDestructionInitiated += OnChainDestructionInitiated;
     }
 
 	private void OnBodyEntered(Node2D body) {
@@ -20,14 +23,27 @@ public partial class BubbleCollisionDetector : Area2D
 
 		DebugPrinter.Print("Body: "+ _parentOfCollidingBody.Name + " collided with: " +
 			 _parentBubble.Name, LogCategory.BubbleCollision);
-			 
+
 		if (!_parentBubble._controlledBubble) return;
 
 		if (_parentOfCollidingBody is Bubble bubble)
 		{
 			DebugPrinter.Print("Detected collision with: " + bubble.Name + " for: " + _parentBubble.Name + "", LogCategory.BubbleCollision);
-
 			bubble.Infect(_parentBubble);
 		}
 	}	
+
+	private void OnChainDestructionInitiated(Bubble bubble) {		
+		if (bubble == _parentBubble){
+			Array<Node2D> overlappingBodies = GetOverlappingBodies();
+			foreach (Node2D body in overlappingBodies) {
+				Bubble overlappingBubble = body.GetParent<Bubble>();
+				if (overlappingBubble != _parentBubble &&
+					overlappingBubble._bubbleType == BubbleType.Oil
+				){
+					overlappingBubble.ChainDestruct();
+				}
+			}
+		}
+	}
 }

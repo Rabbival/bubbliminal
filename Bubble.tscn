@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/Bubble/BubbleCollisionDetector.cs" id="3_t44vo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uwyuy"]
-radius = 96.13
+radius = 112.637
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n7jur"]
 radius = 96.8762
