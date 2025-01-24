@@ -49,7 +49,6 @@ public partial class MouseControl : Node2D
         }
 		Rotation = currentAngle;
 		
-		
 	}
 
 	public override void _Input(InputEvent @event)
