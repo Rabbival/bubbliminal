@@ -41,7 +41,7 @@ public partial class BubbleCollisionDetector : Area2D
 				if (overlappingBubble != _parentBubble &&
 					overlappingBubble._bubbleType == BubbleType.Oil
 				){
-					overlappingBubble.ChainDestruct(lastDelayInMillis);
+					overlappingBubble.ChainDestruct(awaitTimeInMillis: lastDelayInMillis);
 				}
 			}
 		}

@@ -13,6 +13,11 @@ public partial class Bubble : Sprite2D
 		set => OnBubbleTypeSet(value);
 	}
 
+	[Export]
+	float _targetScaleOnExplosion = 2.4f;
+
+	[Export]
+	float _despawnDuration = 0.15f;
 
 	float _awaitTimeIncrementationInMillis = 60;
 
@@ -53,7 +58,6 @@ public partial class Bubble : Sprite2D
 	private void OnBubbleTypeSet(BubbleType bubbleType){
 		if (_deemedForDestruction) return;
 
-		SetColorByBubbleType(bubbleType);
 		HandleSpecialStateTransitions(_bubbleTypeValue, bubbleType);
 		_bubbleTypeValue = bubbleType;
 		DebugPrinter.Print("Set state to: " + bubbleType + " for: " + Name, LogCategory.Bubble);
@@ -65,9 +69,9 @@ public partial class Bubble : Sprite2D
 		}else if (oldState == BubbleType.Fire && newState == BubbleType.Oil){
 			ChainDestruct();
 		}else if (oldState == BubbleType.Neutral && newState == BubbleType.Fire){
-			QueueFree();
+			ExplodeThenDestory();
 		}else if (oldState == BubbleType.Fire && newState == BubbleType.Neutral){
-			QueueFree();
+			ExplodeThenDestory();
 		}
 	}
 
@@ -76,11 +80,18 @@ public partial class Bubble : Sprite2D
 
 		_deemedForDestruction = true;
 		await Task.Delay(awaitTimeInMillis);
-		QueueFree();
 		EmitSignal(
 			SignalName.ChainDestructionInitiated, this, 
 			awaitTimeInMillis + _awaitTimeIncrementationInMillis
 		);
+		ExplodeThenDestory();
+	}
+
+	private async void ExplodeThenDestory(){
+		TweenScale();
+		FadeOut();
+		await Task.Delay((int)(_despawnDuration * 1000));
+		QueueFree();
 	}
 	
 	private void SetColorByBubbleType(BubbleType bubbleType)
@@ -113,6 +124,23 @@ public partial class Bubble : Sprite2D
 			Option.Some(DeclarePositionTweenDone),
 			tweenDuration
 		));
+	}
+
+	public void TweenScale(){
+		TweenProperty(
+			Scale,
+			_targetScaleOnExplosion * Scale,
+			1.0f,
+			new Callable(this, MethodName.SetScale),
+			Option.None<Tween>(),
+			Option.None<Action>(),
+			_despawnDuration
+		);
+	}
+
+	public void FadeOut(){
+		var tween = GetTree().CreateTween();
+        tween.TweenProperty(this, "modulate:a", 0, _despawnDuration);
 	}
 
 	private Tween TweenProperty(
