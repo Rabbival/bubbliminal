@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgfp6agsqf5fq"]
+
+[ext_resource type="Script" path="res://assets/systems/debug/DebugPrinter.cs" id="1_37oia"]
+
+[node name="DebugConfig" type="Node"]
+script = ExtResource("1_37oia")
+_categoriesToPrint = Array[int]([0])

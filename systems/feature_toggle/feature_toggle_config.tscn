@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuoj3xya02g7h"]
+
+[ext_resource type="Script" path="res://assets/systems/feature_toggle/FeatureToggle.cs" id="1_tshrr"]
+
+[node name="FeatureToggleConfig" type="Node2D"]
+position = Vector2(350, 51)
+script = ExtResource("1_tshrr")
+_activeFeatureToggles = Array[int]([0])
