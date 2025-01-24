@@ -6,7 +6,6 @@ public partial class MouseControl : Node2D
 	private Vector2 originalScale;
     private Vector2 originalPosition;
 	private float timer = 0f;
-	
 	private float scaleTime = 0.2f;
 	private float currentAngle = 0f;
 	private bool isScaling = false;
@@ -60,7 +59,6 @@ public partial class MouseControl : Node2D
         {
             if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
             {
-                GD.Print("Left mouse button clicked!");
 				Scale = new Vector2(Scale.X, Scale.Y * 0.8f);
 				Position = new Vector2(Position.X, Position.Y + 10);
 
