@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg3rtvwlgbntb"]
 
-[ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://Bubble.tscn" id="1_21w4r"]
-[ext_resource type="Script" path="res://TestBubble.cs" id="2_2r0pa"]
+[gd_scene load_steps=5 format=3 uid="uid://dl4r243gs3oxs"]
+
+[ext_resource type="Texture2D" uid="uid://d0x802u20gutp" path="res://icon.svg" id="1_ecv5m"]
+[ext_resource type="Script" path="res://scripts/Bubble/Bubble.cs" id="2_r3va7"]
+[ext_resource type="Texture2D" uid="uid://dmpo4eukprpfk" path="res://scripts/MouseControl/tank_arrowEmpty.png" id="3_6h7qo"]
+[ext_resource type="Script" path="res://scripts/MouseControl/MouseControl.cs" id="4_epv74"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="FallingBubbleForTesting" parent="." instance=ExtResource("1_21w4r")]
-position = Vector2(379, -48)
-script = ExtResource("2_2r0pa")
-_bubbleTypeValue = 1
+[node name="Bubble" type="Sprite2D" parent="."]
+position = Vector2(506, 168)
+texture = ExtResource("1_ecv5m")
+script = ExtResource("2_r3va7")
+bubbleType = 1
 
-[node name="Bubble" parent="." instance=ExtResource("1_21w4r")]
-_bubbleTypeValue = 2
+[node name="MouseControl" type="Sprite2D" parent="."]
+position = Vector2(537, 578)
+scale = Vector2(1.22527, 1.375)
+texture = ExtResource("3_6h7qo")
+script = ExtResource("4_epv74")
