@@ -22,7 +22,7 @@ public partial class Bubble : Sprite2D
 				Modulate = Colors.Red;
 				break;
 			case BubbleType.Oil:
-				Modulate = Colors.Brown;
+				Modulate = Colors.Yellow;
 				break;
 		}
 	}
