@@ -33,7 +33,7 @@ public partial class BubbleCollisionDetector : Area2D
 		}
 	}	
 
-	private void OnChainDestructionInitiated(Bubble bubble) {		
+	private void OnChainDestructionInitiated(Bubble bubble, int lastDelayInMillis) {		
 		if (bubble == _parentBubble){
 			Array<Node2D> overlappingBodies = GetOverlappingBodies();
 			foreach (Node2D body in overlappingBodies) {
@@ -41,7 +41,7 @@ public partial class BubbleCollisionDetector : Area2D
 				if (overlappingBubble != _parentBubble &&
 					overlappingBubble._bubbleType == BubbleType.Oil
 				){
-					overlappingBubble.ChainDestruct();
+					overlappingBubble.ChainDestruct(lastDelayInMillis);
 				}
 			}
 		}

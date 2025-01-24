@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Optional;
+using System.Threading.Tasks;
 
 [GlobalClass]
 public partial class Bubble : Sprite2D
@@ -12,8 +13,8 @@ public partial class Bubble : Sprite2D
 		set => OnBubbleTypeSet(value);
 	}
 
-	[Export]
-	float _tweenDuration = 0.5f;
+
+	float _awaitTimeIncrementationInMillis = 60;
 
 	public bool _controlledBubble;
 	Option<Tween> _activePositionTween;
@@ -23,7 +24,7 @@ public partial class Bubble : Sprite2D
 	public delegate void PositionTweenDoneEventHandler(Bubble bubble);
 
 	[Signal]
-	public delegate void ChainDestructionInitiatedEventHandler(Bubble bubble);
+	public delegate void ChainDestructionInitiatedEventHandler(Bubble bubble, int lastDelayInMillis);
 	
 	public override void _Ready()
 	{
@@ -36,6 +37,8 @@ public partial class Bubble : Sprite2D
 
 	public ActionPerformed Infect(Bubble infector)
 	{
+		if (_deemedForDestruction) return new ActionPerformed(false);
+
 		bool acted = false;
 		if (_bubbleType != infector._bubbleType){
 			BubbleType temp = _bubbleType;
@@ -48,6 +51,8 @@ public partial class Bubble : Sprite2D
 	}
 
 	private void OnBubbleTypeSet(BubbleType bubbleType){
+		if (_deemedForDestruction) return;
+
 		SetColorByBubbleType(bubbleType);
 		HandleSpecialStateTransitions(_bubbleTypeValue, bubbleType);
 		_bubbleTypeValue = bubbleType;
@@ -66,16 +71,22 @@ public partial class Bubble : Sprite2D
 		}
 	}
 
-	public void ChainDestruct(){
-		if (!_deemedForDestruction){
-			_deemedForDestruction = true;
-			QueueFree();
-			EmitSignal(SignalName.ChainDestructionInitiated, this);
-		}
+	public async Task ChainDestruct(int awaitTimeInMillis = 0){
+		if (_deemedForDestruction) return;
+
+		_deemedForDestruction = true;
+		await Task.Delay(awaitTimeInMillis);
+		QueueFree();
+		EmitSignal(
+			SignalName.ChainDestructionInitiated, this, 
+			awaitTimeInMillis + _awaitTimeIncrementationInMillis
+		);
 	}
 	
 	private void SetColorByBubbleType(BubbleType bubbleType)
 	{
+		if (_deemedForDestruction) return;
+
 		switch (bubbleType)
 		{
 			case BubbleType.Neutral:
@@ -90,14 +101,17 @@ public partial class Bubble : Sprite2D
 		}
 	}
 
-	public void TweenPosition(Vector2 targetPosition, float fullPositionDelta){
+	public void TweenPosition(Vector2 targetPosition, float fullPositionDelta, float tweenDuration){
+		if (_deemedForDestruction) return;
+		
 		_activePositionTween = Option.Some(TweenProperty(
 			Position,
 			targetPosition,
 			fullPositionDelta,
 			new Callable(this, MethodName.SetPosition),
 			_activePositionTween,
-			Option.Some(DeclarePositionTweenDone)
+			Option.Some(DeclarePositionTweenDone),
+			tweenDuration
 		));
 	}
 
@@ -107,7 +121,8 @@ public partial class Bubble : Sprite2D
 		float fullDelta, 
 		Callable functionToFeed, 
 		Option<Tween> maybeActiveTween,
-		Option<Action> maybeCallOnceDone
+		Option<Action> maybeCallOnceDone,
+		float tweenDuration
 	){
 		float delta = 0.0f;
 		Tween newbornTween = CreateTween();
@@ -117,7 +132,7 @@ public partial class Bubble : Sprite2D
 			functionToFeed, 
 			currentValue, 
 			targetValue, 
-			_tweenDuration * (delta / fullDelta)
+			tweenDuration * (delta / fullDelta)
 		);
 		maybeCallOnceDone.MatchSome(callOnceDone => AwaitDoneTweenWith(newbornTween, callOnceDone));
 		return newbornTween;

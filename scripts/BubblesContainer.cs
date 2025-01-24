@@ -6,6 +6,8 @@ public partial class BubblesContainer : Node2D
 {
 	[Export]
 	Bubble _firstControlledBubble;
+	[Export]
+	float _bubbleShotDurationMultiplier = 0.2f;
 	Option<Bubble> _controlledBubble;
 
 	public override void _Ready()
@@ -32,7 +34,7 @@ public partial class BubblesContainer : Node2D
 			some: bubble => {
 				Vector2 mousePosition = GetViewport().GetMousePosition();
 				float delta = (mousePosition - bubble.GlobalPosition).Length();
-				bubble.TweenPosition(mousePosition, delta);
+				bubble.TweenPosition(mousePosition, delta, _bubbleShotDurationMultiplier);
 			}, 
 			none: () => GD.PushWarning("No controlled bubble")
 		);

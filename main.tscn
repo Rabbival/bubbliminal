@@ -10,6 +10,7 @@
 [node name="BubblesContainer" type="Node2D" parent="." node_paths=PackedStringArray("_firstControlledBubble")]
 script = ExtResource("5_8d6ma")
 _firstControlledBubble = NodePath("FirstBubble")
+_bubbleShotDurationMultiplier = 0.25
 
 [node name="MouseControl" type="Sprite2D" parent="BubblesContainer"]
 position = Vector2(537, 578)
