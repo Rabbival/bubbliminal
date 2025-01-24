@@ -2,5 +2,6 @@ public enum LogCategory {
     FeatureToggle,
     StitchGame,
     Bubble,
-    BubbleCollision
+    BubbleCollision,
+    BubbleContainer
 }

@@ -1,0 +1,51 @@
+using Godot;
+using Optional;
+using System;
+
+public partial class BubblesContainer : Node2D
+{
+	[Export]
+	Bubble _firstControlledBubble;
+	Option<Bubble> _controlledBubble;
+
+	public override void _Ready()
+	{
+		_controlledBubble = Option.Some(_firstControlledBubble);
+		ListenForControlledBubbleMovementDone(_firstControlledBubble);
+	}
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseMotion)
+		{
+			if (mouseMotion.Pressed && mouseMotion.ButtonIndex == MouseButton.Left)
+			{
+				ShootControlledBubble();
+			}
+		}
+    }
+
+	private void ShootControlledBubble()
+	{
+		_controlledBubble.Match(
+			some: bubble => {
+				Vector2 mousePosition = GetViewport().GetMousePosition();
+				float delta = (mousePosition - bubble.GlobalPosition).Length();
+				bubble.TweenPosition(mousePosition, delta);
+			}, 
+			none: () => GD.PushWarning("No controlled bubble")
+		);
+	}
+
+	private void ListenForControlledBubbleMovementDone(Bubble controlledBubble)
+	{
+		controlledBubble.PositionTweenDone += OnControlledBubbleMovementDone;
+	}
+
+	private void OnControlledBubbleMovementDone(Bubble controlledBubble)
+	{
+		//TODO: spawn a new bubble
+		_controlledBubble = Option.None<Bubble>();
+		DebugPrinter.Print("Movement done for " + controlledBubble.Name, LogCategory.BubbleContainer);
+	}
+}
