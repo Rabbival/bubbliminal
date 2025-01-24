@@ -10,6 +10,7 @@ public partial class BubblesContainer : Node2D
 
 	public override void _Ready()
 	{
+		_firstControlledBubble._controlledBubble = true;
 		_controlledBubble = Option.Some(_firstControlledBubble);
 		ListenForControlledBubbleMovementDone(_firstControlledBubble);
 	}
@@ -44,7 +45,7 @@ public partial class BubblesContainer : Node2D
 
 	private void OnControlledBubbleMovementDone(Bubble controlledBubble)
 	{
-		//TODO: spawn a new bubble
+		controlledBubble._controlledBubble = false;
 		_controlledBubble = Option.None<Bubble>();
 		DebugPrinter.Print("Movement done for " + controlledBubble.Name, LogCategory.BubbleContainer);
 	}

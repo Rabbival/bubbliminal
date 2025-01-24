@@ -20,6 +20,7 @@ public partial class BubbleCollisionDetector : Area2D
 
 		DebugPrinter.Print("Body: "+ _parentOfCollidingBody.Name + " collided with: " +
 			 _parentBubble.Name, LogCategory.BubbleCollision);
+			 
 		if (!_parentBubble._controlledBubble) return;
 
 		if (_parentOfCollidingBody is Bubble bubble)

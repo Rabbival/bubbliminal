@@ -15,7 +15,7 @@ public partial class Bubble : Sprite2D
 	[Export]
 	float _tweenDuration = 0.5f;
 
-	public bool _controlledBubble{get; protected set;}
+	public bool _controlledBubble;
 	Option<Tween> _activePositionTween;
 
 	[Signal]
@@ -57,14 +57,14 @@ public partial class Bubble : Sprite2D
 				}
 				break;
 		}
+		infector.DeclarePositionTweenDone();
 		return new ActionPerformed(acted);
 	}
 
 	private void OnBubbleTypeSet(BubbleType bubbleType){
 		SetColorByBubbleType(bubbleType);
 		_bubbleTypeValue = bubbleType;
-		_activePositionTween = Option.None<Tween>();
-		DebugPrinter.Print("Set state to: " + bubbleType + "for: " + Name, LogCategory.Bubble);
+		DebugPrinter.Print("Set state to: " + bubbleType + " for: " + Name, LogCategory.Bubble);
 	}
 	
 	private void SetColorByBubbleType(BubbleType bubbleType)
@@ -122,6 +122,9 @@ public partial class Bubble : Sprite2D
 	}
 
 	private void DeclarePositionTweenDone(){
+		DebugPrinter.Print("Position tween done for: " + Name, LogCategory.Bubble);	
+
+		_activePositionTween.MatchSome(tween => tween.Kill());
 		_activePositionTween = Option.None<Tween>();
 		EmitSignal(SignalName.PositionTweenDone, this);
 	}

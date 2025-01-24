@@ -12,16 +12,19 @@ radius = 96.8762
 
 [node name="Bubble" type="Sprite2D"]
 position = Vector2(386, 216)
+scale = Vector2(0.48, 0.4)
 texture = ExtResource("1_c3yh2")
 script = ExtResource("1_sm2la")
 
 [node name="CollisionDetector" type="Area2D" parent="."]
+scale = Vector2(0.833333, 0.9)
 script = ExtResource("3_t44vo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetector"]
 shape = SubResource("CircleShape2D_uwyuy")
 
 [node name="Collider" type="AnimatableBody2D" parent="."]
+scale = Vector2(0.833338, 0.9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 shape = SubResource("CircleShape2D_n7jur")
