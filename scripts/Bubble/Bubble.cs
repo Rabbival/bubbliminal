@@ -168,7 +168,7 @@ public partial class Bubble : Sprite2D
 		callOnceDone();
 	}
 
-	private void DeclarePositionTweenDone(){
+	public void DeclarePositionTweenDone(){
 		_activePositionTween.MatchSome(tween => {
 			tween.Kill();
 			_activePositionTween = Option.None<Tween>();
