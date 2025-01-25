@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cniee5enr30r3"]
+
+[ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="1_ujs8n"]
+[ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://Bubble.tscn" id="2_e1ta5"]
+[ext_resource type="Texture2D" uid="uid://dmpo4eukprpfk" path="res://scripts/MouseControl/tank_arrowEmpty.png" id="3_epcbt"]
+[ext_resource type="Script" path="res://scripts/MouseControl/MouseControl.cs" id="4_4hgru"]
+[ext_resource type="Texture2D" uid="uid://b07gbr4b08hlu" path="res://scripts/ChanceManager/tanks_crateWood.png" id="5_g723b"]
+[ext_resource type="Script" path="res://scripts/ChanceManager/ChanceManager.cs" id="6_8m3ab"]
+
+[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_mouseController")]
+script = ExtResource("1_ujs8n")
+_bubbleScene = ExtResource("2_e1ta5")
+_mouseController = NodePath("MouseControl")
+
+[node name="MouseControl" type="Sprite2D" parent="."]
+position = Vector2(538, 548)
+scale = Vector2(1.22527, 1.375)
+texture = ExtResource("3_epcbt")
+offset = Vector2(0, -44.71)
+script = ExtResource("4_4hgru")
+
+[node name="ChanceManager" type="Sprite2D" parent="."]
+position = Vector2(58.0001, 360)
+scale = Vector2(5.25, 2.37414)
+texture = ExtResource("5_g723b")
+centered = false
+script = ExtResource("6_8m3ab")
+
+[node name="Bubble" parent="." instance=ExtResource("2_e1ta5")]
+position = Vector2(189, 176)
+_bubbleTypeValue = 1
+
+[node name="Bubble3" parent="." instance=ExtResource("2_e1ta5")]
+position = Vector2(814, 384)
+_bubbleTypeValue = 3
+
+[node name="Bubble4" parent="." instance=ExtResource("2_e1ta5")]
+position = Vector2(782, 78)
+_bubbleTypeValue = 3
+
+[node name="Bubble5" parent="." instance=ExtResource("2_e1ta5")]
+position = Vector2(962, 175)
+_bubbleTypeValue = 2
+
+[node name="Bubble6" parent="." instance=ExtResource("2_e1ta5")]
+position = Vector2(388, 58)
+_bubbleTypeValue = 2
