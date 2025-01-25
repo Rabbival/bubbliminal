@@ -13,12 +13,6 @@ public partial class Bubble : Sprite2D
 		set => OnBubbleTypeSet(value);
 	}
 
-	[Export]
-	float _targetScaleOnExplosion = 2.4f;
-
-	[Export]
-	float _despawnDuration = 0.15f;
-
 	public int _awaitTimeIncrementationInMillis = 60;
 
 	public bool _controlledBubble;
@@ -87,7 +81,7 @@ public partial class Bubble : Sprite2D
 	private async void ExplodeThenDestory(){
 		TweenScale();
 		FadeOut();
-		await Task.Delay((int)(_despawnDuration * 1000));
+		await Task.Delay((int)(BubblesConfig.DespawnDuration * 1000));
 		QueueFree();
 	}
 	
@@ -109,7 +103,7 @@ public partial class Bubble : Sprite2D
 		}
 	}
 
-	public void TweenPosition(Vector2 targetPosition, float fullPositionDelta, float tweenDuration){
+	public void TweenPosition(Vector2 targetPosition, float fullPositionDelta){
 		if (_deemedForDestruction) return;
 		
 		_activePositionTween = Option.Some(TweenProperty(
@@ -119,25 +113,25 @@ public partial class Bubble : Sprite2D
 			new Callable(this, MethodName.SetPosition),
 			Option.None<Tween>(),
 			Option.Some(DeclarePositionTweenDone),
-			tweenDuration
+			BubblesConfig.ShotDurationMultiplier
 		));
 	}
 
 	public void TweenScale(){
 		TweenProperty(
 			Scale,
-			_targetScaleOnExplosion * Scale,
+			BubblesConfig.TargetScaleOnExplosion * Scale,
 			1.0f,
 			new Callable(this, MethodName.SetScale),
 			Option.None<Tween>(),
 			Option.None<Action>(),
-			_despawnDuration
+			BubblesConfig.DespawnDuration
 		);
 	}
 
 	public void FadeOut(){
 		var tween = GetTree().CreateTween();
-        tween.TweenProperty(this, "modulate:a", 0, _despawnDuration);
+        tween.TweenProperty(this, "modulate:a", 0, BubblesConfig.DespawnDuration);
 	}
 
 	private Tween TweenProperty(

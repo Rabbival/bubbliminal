@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0u56litsgm1o"]
+
+[ext_resource type="Script" path="res://systems/bubbles_config/BubblesConfig.cs" id="1_a1v5y"]
+
+[node name="BubblesConfig" type="Node"]
+script = ExtResource("1_a1v5y")
