@@ -110,7 +110,7 @@ public partial class Bubble : Sprite2D
 			Position,
 			targetPosition,
 			fullPositionDelta,
-			new Callable(this, MethodName.SetPosition),
+			new Callable(this, MethodName.MoveUntilOutOfScreen),
 			Option.None<Tween>(),
 			Option.Some(DeclarePositionTweenDone),
 			BubblesConfig.ShotDurationMultiplier
@@ -169,5 +169,22 @@ public partial class Bubble : Sprite2D
 			EmitSignal(SignalName.PositionTweenDone, this);
 			DebugPrinter.Print("Position tween done for: " + Name, LogCategory.Bubble);	
 		});
+	}
+
+	private void MoveUntilOutOfScreen(Vector2 newCalculatedPosition){
+		bool outOfScreenPositiveX = newCalculatedPosition.X > GetViewportRect().Size.X;
+		bool outOfScreenNegativeX = newCalculatedPosition.X < 0;
+		bool outOfScreenPositiveY = newCalculatedPosition.Y > GetViewportRect().Size.Y;
+		bool outOfScreenNegativeY = newCalculatedPosition.Y < 0;
+		if (outOfScreenPositiveX 
+			|| outOfScreenNegativeX 
+			|| outOfScreenPositiveY 
+			|| outOfScreenNegativeY
+		){
+			DeclarePositionTweenDone();
+			ExplodeThenDestory();
+		}else{
+			Position = newCalculatedPosition;
+		}
 	}
 }
