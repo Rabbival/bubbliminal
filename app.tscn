@@ -11,4 +11,3 @@ scale = Vector2(0.499796, 0.499847)
 texture = ExtResource("1_qn5pv")
 
 [node name="Game" parent="." instance=ExtResource("1_srurr")]
-scale = Vector2(1.64, 1.6)

@@ -137,6 +137,7 @@ scale = Vector2(0.45851, 0.487619)
 position = Vector2(371.366, 738.625)
 scale = Vector2(1.22527, 1.375)
 texture = ExtResource("3_epcbt")
+offset = Vector2(0, -43.375)
 script = ExtResource("4_4hgru")
 
 [node name="CollisionDetector" type="Area2D" parent="MouseControl"]
@@ -144,7 +145,7 @@ scale = Vector2(0.833333, 0.9)
 script = ExtResource("7_hs8l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseControl/CollisionDetector"]
-position = Vector2(0, -5.65657)
+position = Vector2(2.3647, -46.8687)
 shape = SubResource("CircleShape2D_h1tu2")
 debug_color = Color(0.875752, 0.262675, 0.567338, 0.42)
 
