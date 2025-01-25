@@ -5,21 +5,19 @@ using System;
 public partial class BubblesContainer : Node2D
 {
 	[Export]
-	Bubble _firstControlledBubble;
+	PackedScene _bubbleScene;
 	[Export]
 	float _bubbleShotDurationMultiplier = 0.14f;
 	[Export]
-	PackedScene _bubbleScene;
+	MouseControl _mouseController;
 
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
 
 	public override void _Ready()
 	{
-		_firstControlledBubble._controlledBubble = true;
-		_controlledBubble = Option.Some(_firstControlledBubble);
-		ListenForControlledBubbleMovementDone(_firstControlledBubble);
-		_spawnPosition = _firstControlledBubble.GlobalPosition;
+		_spawnPosition = _mouseController.Position;
+		SpawnNewControlledBubble();
 	}
 
     public override void _Input(InputEvent @event)
@@ -53,17 +51,18 @@ public partial class BubblesContainer : Node2D
 	private void OnControlledBubbleMovementDone(Bubble controlledBubble)
 	{
 		controlledBubble._controlledBubble = false;
-		Bubble newbornBubble = SpawnNewControlledBubble();
-		_controlledBubble = Option.Some(newbornBubble);
-		ListenForControlledBubbleMovementDone(newbornBubble);
+		SpawnNewControlledBubble();
 	}
 
-	private Bubble SpawnNewControlledBubble(){
+	private void SpawnNewControlledBubble(){
         Bubble newbornBubble = _bubbleScene.Instantiate<Bubble>();
-		newbornBubble.Position = _spawnPosition;
 		newbornBubble._controlledBubble = true;
         newbornBubble._bubbleType = ChanceManager.GetNextBubbleType();
+		ListenForControlledBubbleMovementDone(newbornBubble);
         AddChild(newbornBubble);
-        return newbornBubble;
+		newbornBubble.Position = _spawnPosition;
+        _controlledBubble = Option.Some(newbornBubble);
+
+		DebugPrinter.Print("spawned a new bubble at: " + _spawnPosition, LogCategory.Bubble);
     }
 }

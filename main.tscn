@@ -9,10 +9,10 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="BubblesContainer" type="Node2D" parent="." node_paths=PackedStringArray("_firstControlledBubble")]
+[node name="BubblesContainer" type="Node2D" parent="." node_paths=PackedStringArray("_mouseController")]
 script = ExtResource("5_8d6ma")
-_firstControlledBubble = NodePath("FirstBubble")
 _bubbleScene = ExtResource("4_v8c2a")
+_mouseController = NodePath("MouseControl")
 
 [node name="MouseControl" type="Sprite2D" parent="BubblesContainer"]
 position = Vector2(538, 548)
@@ -21,16 +21,16 @@ texture = ExtResource("3_6h7qo")
 offset = Vector2(0, -44.71)
 script = ExtResource("4_epv74")
 
-[node name="Bubble" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
-position = Vector2(423, 213)
-_bubbleTypeValue = 2
-
 [node name="ChanceManager" type="Sprite2D" parent="BubblesContainer"]
 position = Vector2(58.0001, 360)
 scale = Vector2(5.25, 2.37414)
 texture = ExtResource("5_eq7a4")
 centered = false
 script = ExtResource("5_4i7oa")
+
+[node name="Bubble" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
+position = Vector2(423, 213)
+_bubbleTypeValue = 2
 
 [node name="Bubble3" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
 position = Vector2(656, 241)
@@ -45,6 +45,3 @@ _bubbleTypeValue = 2
 [node name="Bubble6" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
 position = Vector2(469, 256)
 _bubbleTypeValue = 2
-
-[node name="FirstBubble" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
-position = Vector2(536, 557)
