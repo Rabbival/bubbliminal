@@ -13,7 +13,7 @@ public partial class BubbleZone : Node2D
             if (child is Bubble bubble)
             {
 				
-				if (randomNumber > 0.8)
+				if (randomNumber > 0.9)
                 {
                     bubble._bubbleType = BubbleType.Oil;
                 }

@@ -3,9 +3,9 @@ using System;
 
 public partial class ChanceManager : Node
 {
-	private static float chanceRegular = 0.4f;
-    private static float chanceFire = 0.3f;
-    private static float chanceOil = 0.3f;
+	private static float chanceRegular = 0.6f;
+    private static float chanceFire = 0.2f;
+    private static float chanceOil = 0.2f;
 	private static Random random = new Random();
 
 	public static BubbleType GetNextBubbleType()
