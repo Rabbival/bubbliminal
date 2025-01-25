@@ -4,7 +4,7 @@ using Optional;
 public partial class BubblesContainer : Node2D
 {
 	[Export]
-	private BubbleZone _bubbleZone;
+	private PackedScene _bubbleZoneScene;
 	[Export]
 	PackedScene _bubbleScene;
 	[Export]
@@ -19,6 +19,10 @@ public partial class BubblesContainer : Node2D
 	[Signal]
 	public delegate void GameWonEventHandler(int score);
 
+	[Signal]
+	public delegate void GameRestartedEventHandler();
+
+	Option<BubbleZone> _bubbleZone = Option.None<BubbleZone>();
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
 	int _controlledBubbleIndex;
@@ -27,13 +31,20 @@ public partial class BubblesContainer : Node2D
 	int _shotsTakenCounter;
 
 	public override void _Ready()
-	{
+	{	
+		_bubbleZone.MatchSome(bubbleZone => bubbleZone.QueueFree());
+		
+		Visible = true;
 		_lastShotBubbleIsMoving = false;
 		_shouldSpawnNewBubble = true;
 		_controlledBubbleIndex = 0;
 		_spawnPosition = _mouseController.Position;
 		_shotsTakenCounter = 0;
-		_bubbleZone.GameWon += OnGameWon;
+		_bubbleZone = Option.Some(_bubbleZoneScene.Instantiate<BubbleZone>());
+		_bubbleZone.MatchSome(bubbleZone => {
+			bubbleZone.GameWon += OnGameWon;
+			DebugPrinter.Print("Spawned bubble zone: "+ bubbleZone.Name, LogCategory.BubbleContainer);
+		});
 		UpdateLabel(_shotsTakenCounter);
 	}
 
@@ -59,9 +70,18 @@ public partial class BubblesContainer : Node2D
 		}else{
 			if (_instructionsCanvas.Visible){
 				_instructionsCanvas.HandleInput(@event);
+			}else{
+				ListenToRestartRequests(@event);
 			}
 		}
     }
+
+	private void ListenToRestartRequests(InputEvent @event){
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed || @event is InputEventMouseButton mouseEvent && mouseEvent.Pressed){
+			DebugPrinter.Print("Restarting game", LogCategory.BubbleContainer);
+			_Ready();
+		}
+	}
 
 	private void ShootControlledBubble()
 	{
@@ -108,14 +128,10 @@ public partial class BubblesContainer : Node2D
 		_controlledBubbleIndex++;
 
 		ListenForControlledBubbleMovementDone(newbornBubble);
-        _bubbleZone.AddChild(newbornBubble);
-		_bubbleZone.SubscribeToBubble(newbornBubble);
+        _bubbleZone.MatchSome(bubbleZone => bubbleZone.AddChild(newbornBubble));
 		newbornBubble._controlledBubble = true;
         _controlledBubble = Option.Some(newbornBubble);
-		
-
-		DebugPrinter.Print("Spawned: " + newbornBubble.Name + " at: " + _spawnPosition, LogCategory.BubbleContainer);
-    }
+	}
 
 	private void OnGameWon(){
 		Visible = false;

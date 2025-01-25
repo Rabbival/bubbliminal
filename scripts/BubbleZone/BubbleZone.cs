@@ -4,14 +4,14 @@ using System;
 public partial class BubbleZone : Node2D
 {
 	private Random random = new Random();
-	bool _countChildrenNextFrame;
+	bool _countChildren;
 
     [Signal]
     public delegate void GameWonEventHandler();
 
 	public override void _Ready()
 	{
-        _countChildrenNextFrame = true;
+        _countChildren = true;
 		foreach (Sprite2D child in GetChildren())
         {
 			double randomNumber = random.NextDouble();
@@ -32,18 +32,14 @@ public partial class BubbleZone : Node2D
 
     public override void _Process(double _delta)
     {
-        if (_countChildrenNextFrame){
+        if (_countChildren){
             DeclareGameDoneByChildCount();
         }
     }
 
-    public void SubscribeToBubble(Bubble bubble){
-        bubble.WasDestoryed += (Bubble bubble) => DeclareGameDoneByChildCount();
-    }
-
 	private void DeclareGameDoneByChildCount(){
        if (GetChildCount() <= 1){
-        _countChildrenNextFrame = false;
+            _countChildren = false;
            EmitSignal(SignalName.GameWon);
        }
     }

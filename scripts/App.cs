@@ -15,5 +15,8 @@ public partial class App : Node2D
 			_gameWonLabel.Text = "Game won!\nTurns taken: " + score;
 			_gameWonLabel.Visible = true;
 		};
+		_bubblesContainer.GameRestarted += () => {
+			_gameWonLabel.Visible = false;
+		};
 	}
 }

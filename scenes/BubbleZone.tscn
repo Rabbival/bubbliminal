@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw4868kqstc65"]
+
+[ext_resource type="Script" path="res://scripts/BubbleZone/BubbleZone.cs" id="1_wbkuw"]
+[ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://scenes/Bubble.tscn" id="2_0oykn"]
+
+[node name="BubbleZone" type="Sprite2D"]
+position = Vector2(-17.0732, 126.875)
+scale = Vector2(1.04687, 0.820313)
+script = ExtResource("1_wbkuw")
+
+[node name="Bubble" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(169.055, 325.285)
+scale = Vector2(0.482987, 0.481905)
+
+[node name="Bubble3" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(320.936, 118.048)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble4" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(396.399, 109.514)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble5" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(249.294, 158.276)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble6" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(196.756, 233.857)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble2" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(628.52, 342.352)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble7" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(478.549, 125.362)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble11" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(340.041, 391.114)
+scale = Vector2(0.482987, 0.481905)
+
+[node name="Bubble12" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(322.846, 213.133)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble13" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(388.757, 188.752)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble14" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(265.533, 282.619)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble15" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(249.294, 385.019)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble16" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(517.713, 253.362)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble17" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(453.713, 214.352)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble8" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(554.012, 170.467)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble9" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(583.624, 416.714)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble10" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(601.773, 252.143)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble18" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(334.309, 304.562)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble19" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(410.727, 286.276)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble20" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(422.19, 391.114)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble21" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(551.146, 326.504)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble22" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(470.907, 317.971)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble23" parent="." instance=ExtResource("2_0oykn")]
+position = Vector2(511.982, 409.4)
+scale = Vector2(0.45851, 0.487619)

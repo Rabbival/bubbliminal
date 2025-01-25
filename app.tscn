@@ -30,15 +30,15 @@ position = Vector2(612.25, 816.25)
 scale = Vector2(0.499796, 0.499847)
 texture = ExtResource("1_qn5pv")
 
-[node name="BubblesContainer" parent="." node_paths=PackedStringArray("_instructionsCanvas") instance=ExtResource("7_ewkpa")]
-position = Vector2(200, 278)
-scale = Vector2(1.12685, 1.14485)
-_instructionsCanvas = NodePath("../Instructions")
-
 [node name="Machine" type="Sprite2D" parent="."]
 position = Vector2(568, 784)
 scale = Vector2(1.8653, 1.84)
 texture = ExtResource("6_xu677")
+
+[node name="BubblesContainer" parent="." node_paths=PackedStringArray("_instructionsCanvas") instance=ExtResource("7_ewkpa")]
+position = Vector2(118, 115)
+scale = Vector2(1.32685, 1.42485)
+_instructionsCanvas = NodePath("../Instructions")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 40.0
