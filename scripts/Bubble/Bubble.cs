@@ -36,7 +36,7 @@ public partial class Bubble : Sprite2D
 
 	public ActionPerformed Infect(Bubble infector)
 	{
-		if (_deemedForDestruction) return new ActionPerformed(false);
+		if (_deemedForDestruction || infector._deemedForDestruction) return new ActionPerformed(false);
 
 		bool acted = false;
 		infector.DeclarePositionTweenDone();
