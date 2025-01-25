@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl4r243gs3oxs"]
+[gd_scene load_steps=3 format=3 uid="uid://dl4r243gs3oxs"]
 
+[ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]
 [ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://game.tscn" id="1_srurr"]
 
 [node name="App" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(609.5, 811.5)
+scale = Vector2(0.493873, 0.501532)
+texture = ExtResource("1_qn5pv")
 
 [node name="Game" parent="." instance=ExtResource("1_srurr")]
