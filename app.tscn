@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl4r243gs3oxs"]
+[gd_scene load_steps=10 format=3 uid="uid://dl4r243gs3oxs"]
 
 [ext_resource type="Script" path="res://scripts/Instructions/InstructionsCanvas.cs" id="1_bwx1b"]
 [ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]
 [ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://game.tscn" id="1_srurr"]
 [ext_resource type="Script" path="res://scripts/Instructions/Instructions.cs" id="2_s42og"]
 [ext_resource type="AudioStream" uid="uid://bgy3btespp17e" path="res://Ambient Loop.ogg" id="3_h0xfu"]
+[ext_resource type="Texture2D" uid="uid://fiibsb4y40hn" path="res://Sprites/machine.png" id="6_xu677"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_48wmj"]
 font_color = Color(0.933333, 0.109804, 0.109804, 1)
@@ -23,9 +24,17 @@ scale = Vector2(0.499796, 0.499847)
 texture = ExtResource("1_qn5pv")
 
 [node name="Game" parent="." node_paths=PackedStringArray("_instructionsCanvas") instance=ExtResource("1_srurr")]
+position = Vector2(129, 210)
+scale = Vector2(1.31329, 1.36)
 _instructionsCanvas = NodePath("../Instructions")
 
+[node name="Machine" type="Sprite2D" parent="."]
+position = Vector2(568, 784)
+scale = Vector2(1.8653, 1.84)
+texture = ExtResource("6_xu677")
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(30.88, 41.989)

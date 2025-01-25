@@ -121,13 +121,13 @@ public partial class Bubble : Sprite2D
 		switch (bubbleType)
 		{
 			case BubbleType.Neutral:
-				Modulate = Colors.White;
+				Texture = BubblesConfig.NeutralTexture;
 				break;
 			case BubbleType.Fire:
-				Modulate = Colors.Red;
+				Texture = BubblesConfig.FireTexture;
 				break;
 			case BubbleType.Oil:
-				Modulate = Colors.Yellow;
+				Texture = BubblesConfig.OilTexture;
 				break;
 		}
 	}

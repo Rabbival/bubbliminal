@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjtbv62whs7xu"]
 
-[ext_resource type="Texture2D" uid="uid://d0x802u20gutp" path="res://icon.svg" id="1_c3yh2"]
+[ext_resource type="Texture2D" uid="uid://bo1id3bvueavl" path="res://Sprites/Basic.png" id="1_jrx3j"]
 [ext_resource type="Script" path="res://scripts/Bubble/Bubble.cs" id="1_sm2la"]
 [ext_resource type="Script" path="res://scripts/Bubble/BubbleCollisionDetector.cs" id="3_t44vo"]
 
@@ -11,19 +11,20 @@ radius = 107.643
 radius = 92.0972
 
 [node name="Bubble" type="Sprite2D"]
-scale = Vector2(0.409165, 0.38238)
-texture = ExtResource("1_c3yh2")
+scale = Vector2(0.22387, 0.202055)
+texture = ExtResource("1_jrx3j")
+offset = Vector2(-10.47, 34.285)
 script = ExtResource("1_sm2la")
 
 [node name="CollisionDetector" type="Area2D" parent="."]
-scale = Vector2(0.833333, 0.9)
+scale = Vector2(2.07205, 2.07214)
 script = ExtResource("3_t44vo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetector"]
 shape = SubResource("CircleShape2D_uwyuy")
 
 [node name="Collider" type="AnimatableBody2D" parent="."]
-scale = Vector2(0.833338, 0.9)
+scale = Vector2(2.07205, 2.07214)
 sync_to_physics = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
