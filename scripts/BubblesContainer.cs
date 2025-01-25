@@ -14,12 +14,18 @@ public partial class BubblesContainer : Node2D
 	AudioStreamPlayer2D _shootingSound { get; set; }
 	[Export]
 	InstructionsCanvas _instructionsCanvas;
+	[Export]
+	Label _scoreLabel;
+
+	[Signal]
+	public delegate void GameWonEventHandler(int score);
 
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
 	int _controlledBubbleIndex;
 	bool _shouldSpawnNewBubble;
 	bool _lastShotBubbleIsMoving;
+	int _shotsTakenCounter;
 
 	public override void _Ready()
 	{
@@ -27,6 +33,9 @@ public partial class BubblesContainer : Node2D
 		_shouldSpawnNewBubble = true;
 		_controlledBubbleIndex = 0;
 		_spawnPosition = _mouseController.Position;
+		_shotsTakenCounter = 0;
+		_bubbleZone.GameWon += OnGameWon;
+		UpdateLabel(_shotsTakenCounter);
 	}
 
     public override void _Process(double delta)
@@ -67,6 +76,8 @@ public partial class BubblesContainer : Node2D
 				_controlledBubble = Option.None<Bubble>();
 				_lastShotBubbleIsMoving = true;
 				if (_shootingSound != null) _shootingSound.Play();
+				_shotsTakenCounter++;
+				UpdateLabel(_shotsTakenCounter);
 			}, 
 			none: () => {
 				if (!_lastShotBubbleIsMoving){
@@ -105,4 +116,14 @@ public partial class BubblesContainer : Node2D
 
 		DebugPrinter.Print("Spawned: " + newbornBubble.Name + " at: " + _spawnPosition, LogCategory.BubbleContainer);
     }
+
+	private void OnGameWon(){
+		Visible = false;
+		GD.Print("Game won! Turns taken: "+ _shotsTakenCounter);
+		EmitSignal(SignalName.GameWon, _shotsTakenCounter);
+	}
+
+	private void UpdateLabel(int shotsTakenCounter){
+		_scoreLabel.Text = "Turns taken: " + shotsTakenCounter;
+	}
 }

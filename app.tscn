@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl4r243gs3oxs"]
+[gd_scene load_steps=12 format=3 uid="uid://dl4r243gs3oxs"]
 
+[ext_resource type="Script" path="res://App.cs" id="1_bdrab"]
 [ext_resource type="Script" path="res://scripts/Instructions/InstructionsCanvas.cs" id="1_bwx1b"]
 [ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]
 [ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://game.tscn" id="1_srurr"]
@@ -16,7 +17,13 @@ font_color = Color(0.743657, 0.655436, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_kwk1d"]
 font_color = Color(0.604331, 0.608146, 0.564348, 1)
 
-[node name="App" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_hjbwy"]
+font_size = 80
+
+[node name="App" type="Node2D" node_paths=PackedStringArray("_bubblesContainer", "_gameWonLabel")]
+script = ExtResource("1_bdrab")
+_bubblesContainer = NodePath("Game")
+_gameWonLabel = NodePath("GameWonLabel")
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(612.25, 816.25)
@@ -138,3 +145,12 @@ pitch_scale = 0.8
 autoplay = true
 mix_target = 1
 parameters/looping = true
+
+[node name="GameWonLabel" type="Label" parent="."]
+offset_left = 331.0
+offset_top = 513.0
+offset_right = 829.0
+offset_bottom = 736.0
+text = "Game Won!
+Turns Taken:"
+label_settings = SubResource("LabelSettings_hjbwy")

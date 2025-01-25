@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crkfp7sgnn83w"]
+[gd_scene load_steps=13 format=3 uid="uid://crkfp7sgnn83w"]
 
 [ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="1_ujs8n"]
 [ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://Bubble.tscn" id="2_e1ta5"]
@@ -16,13 +16,17 @@ radius = 209.09
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1tu2"]
 radius = 107.643
 
-[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_bubbleZone", "_mouseController", "_shootingSound")]
+[sub_resource type="LabelSettings" id="LabelSettings_wysqq"]
+font_size = 80
+
+[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_bubbleZone", "_mouseController", "_shootingSound", "_scoreLabel")]
 scale = Vector2(1.64, 1.6)
 script = ExtResource("1_ujs8n")
 _bubbleZone = NodePath("BubbleZone")
 _bubbleScene = ExtResource("2_e1ta5")
 _mouseController = NodePath("MouseControl")
 _shootingSound = NodePath("ShotSoundPlayer")
+_scoreLabel = NodePath("Label")
 
 [node name="Shield" type="Sprite2D" parent="."]
 position = Vector2(371.366, 374.625)
@@ -158,3 +162,11 @@ script = ExtResource("6_8m3ab")
 [node name="ShotSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_48roe")
 volume_db = 8.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 51.2195
+offset_top = 912.5
+offset_right = 639.22
+offset_bottom = 1022.5
+text = "turns taken: "
+label_settings = SubResource("LabelSettings_wysqq")

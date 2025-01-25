@@ -6,6 +6,9 @@ public partial class BubbleZone : Node2D
 	private Random random = new Random();
 	bool _countChildrenNextFrame;
 
+    [Signal]
+    public delegate void GameWonEventHandler();
+
 	public override void _Ready()
 	{
         _countChildrenNextFrame = false;
@@ -41,9 +44,8 @@ public partial class BubbleZone : Node2D
     }
 
 	private void DeclareGameDoneByChildCount(){
-        GD.Print(GetChildCount());
        if (GetChildCount() <= 1){
-            GD.Print("Game done by child count");
+           EmitSignal(SignalName.GameWon);
        }
     }
 }
