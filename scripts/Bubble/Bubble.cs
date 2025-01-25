@@ -80,7 +80,9 @@ public partial class Bubble : Sprite2D
 
 		DebugPrinter.Print("Setting state to: " + bubbleType + " for: " + Name, LogCategory.Bubble);
 		HandleSpecialStateTransitions(_bubbleTypeValue, bubbleType);
-		SetColorByBubbleType(bubbleType);
+		if (!_deemedForDestruction){
+			SetColorByBubbleType(bubbleType);
+		}
 		_bubbleTypeValue = bubbleType;
 	}
 

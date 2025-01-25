@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crkfp7sgnn83w"]
+[gd_scene load_steps=12 format=3 uid="uid://crkfp7sgnn83w"]
 
 [ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="1_ujs8n"]
 [ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://Bubble.tscn" id="2_e1ta5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/BubbleZone/BubbleZone.cs" id="4_wp76h"]
 [ext_resource type="Script" path="res://scripts/ChanceManager/ChanceManager.cs" id="6_8m3ab"]
 [ext_resource type="Script" path="res://ArrowCollider.cs" id="7_hs8l5"]
+[ext_resource type="AudioStream" uid="uid://i65c4givbyse" path="res://shoot.ogg" id="9_48roe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf1dt"]
 radius = 209.09
@@ -15,11 +16,12 @@ radius = 209.09
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1tu2"]
 radius = 107.643
 
-[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_mouseController")]
+[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_mouseController", "_shootingSound")]
 scale = Vector2(1.64, 1.6)
 script = ExtResource("1_ujs8n")
 _bubbleScene = ExtResource("2_e1ta5")
 _mouseController = NodePath("MouseControl")
+_shootingSound = NodePath("ShotSoundPlayer")
 
 [node name="Shield" type="Sprite2D" parent="."]
 position = Vector2(371.366, 374.625)
@@ -151,3 +153,7 @@ debug_color = Color(0.875752, 0.262675, 0.567338, 0.42)
 
 [node name="ChanceManager" type="Node" parent="."]
 script = ExtResource("6_8m3ab")
+
+[node name="ShotSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_48roe")
+volume_db = 8.0
