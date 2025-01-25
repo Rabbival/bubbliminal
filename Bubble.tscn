@@ -5,10 +5,10 @@
 [ext_resource type="Script" path="res://scripts/Bubble/BubbleCollisionDetector.cs" id="3_t44vo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uwyuy"]
-radius = 170.023
+radius = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n7jur"]
-radius = 122.625
+radius = 104.999
 
 [node name="Bubble" type="Sprite2D"]
 scale = Vector2(0.48, 0.4)
@@ -27,5 +27,6 @@ scale = Vector2(0.833338, 0.9)
 sync_to_physics = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+scale = Vector2(1.0062, 1)
 shape = SubResource("CircleShape2D_n7jur")
 debug_color = Color(0.971426, 0.169903, 1.92523e-07, 0.42)

@@ -4,7 +4,7 @@ using System;
 public partial class BubblesConfig : Node
 {
 	[Export]
-	float _shotDurationMultiplier = 0.14f;
+	float _shotDurationMultiplier = 0.6f;
 	[Export]
 	float _targetScaleOnExplosion = 2.4f;
 	[Export]

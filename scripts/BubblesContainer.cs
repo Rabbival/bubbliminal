@@ -13,9 +13,11 @@ public partial class BubblesContainer : Node2D
 	Vector2 _spawnPosition;
 	int _controlledBubbleIndex;
 	bool _shouldSpawnNewBubble;
+	bool _lastShotBubbleIsMoving;
 
 	public override void _Ready()
 	{
+		_lastShotBubbleIsMoving = false;
 		_shouldSpawnNewBubble = true;
 		_controlledBubbleIndex = 0;
 		_spawnPosition = _mouseController.Position;
@@ -47,10 +49,18 @@ public partial class BubblesContainer : Node2D
 		_controlledBubble.Match(
 			some: bubble => {
 				Vector2 mousePosition = GetViewport().GetMousePosition();
-				float delta = (mousePosition - bubble.GlobalPosition).Length();
-				bubble.TweenPosition(mousePosition, delta);
+				Vector2 deltaVector = (mousePosition - bubble.GlobalPosition).Normalized() * BubblesConfig.FurthestDistance;
+				Vector2 targetLocation = bubble.GlobalPosition + deltaVector;
+				float delta = deltaVector.Length();
+				bubble.TweenPosition(targetLocation, delta);
+				_controlledBubble = Option.None<Bubble>();
+				_lastShotBubbleIsMoving = true;
 			}, 
-			none: () => GD.PushWarning("No controlled bubble")
+			none: () => {
+				if (!_lastShotBubbleIsMoving){
+					_shouldSpawnNewBubble = true;
+				}
+			}
 		);
 	}
 
@@ -61,7 +71,7 @@ public partial class BubblesContainer : Node2D
 
 	private void OnControlledBubbleMovementDone(Bubble controlledBubble)
 	{
-		controlledBubble._controlledBubble = false;
+		_shouldSpawnNewBubble = false;
 		_shouldSpawnNewBubble = true;
 	}
 
