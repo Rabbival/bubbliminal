@@ -43,6 +43,7 @@ public partial class BubblesContainer : Node2D
 		_bubbleZone = Option.Some(_bubbleZoneScene.Instantiate<BubbleZone>());
 		_bubbleZone.MatchSome(bubbleZone => {
 			bubbleZone.GameWon += OnGameWon;
+			AddChild(bubbleZone);
 			DebugPrinter.Print("Spawned bubble zone: "+ bubbleZone.Name, LogCategory.BubbleContainer);
 		});
 		UpdateLabel(_shotsTakenCounter);
@@ -79,6 +80,7 @@ public partial class BubblesContainer : Node2D
 	private void ListenToRestartRequests(InputEvent @event){
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed || @event is InputEventMouseButton mouseEvent && mouseEvent.Pressed){
 			DebugPrinter.Print("Restarting game", LogCategory.BubbleContainer);
+			EmitSignal(SignalName.GameRestarted);
 			_Ready();
 		}
 	}
