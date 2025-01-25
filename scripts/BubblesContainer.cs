@@ -1,6 +1,5 @@
 using Godot;
 using Optional;
-using System;
 
 public partial class BubblesContainer : Node2D
 {

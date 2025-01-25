@@ -6,16 +6,12 @@ public partial class Instructions : Label
 	[Export]
 	private float moveSpeed = 50f; 
 
-    
+	[Export]
     private float timeToMove = 3f; 
+
     private float timer = 0f;
 
 
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		timer += (float)delta;

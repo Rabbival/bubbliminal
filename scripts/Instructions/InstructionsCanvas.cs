@@ -1,10 +1,9 @@
 using Godot;
-using System;
-
 public partial class InstructionsCanvas : CanvasLayer
 {
 	[Export]
 	ColorRect blackScreen;
+
 	[Export]
 	BubblesContainer bubblesContainer;
 
@@ -22,14 +21,10 @@ public partial class InstructionsCanvas : CanvasLayer
         	bubblesContainer.Visible = true;
         }
 	}
+
 	private void OnAnyButtonPressed()
     {
-		
-		GD.Print("Game node is still null.");
-
-        this.Visible = false;
-        
-        
+        Visible = false;
         bubblesContainer.Visible = true;
     }
 }
