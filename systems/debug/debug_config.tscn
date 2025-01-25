@@ -4,4 +4,4 @@
 
 [node name="DebugConfig" type="Node"]
 script = ExtResource("1_37oia")
-_categoriesToPrint = Array[int]([])
+_categoriesToPrint = Array[int]([4])
