@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4ikx827o3d1q"]
+[gd_scene load_steps=9 format=3 uid="uid://dl4r243gs3oxs"]
 
 [ext_resource type="Script" path="res://scripts/Instructions/InstructionsCanvas.cs" id="1_bwx1b"]
+[ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]
 [ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://game.tscn" id="1_srurr"]
 [ext_resource type="Script" path="res://scripts/Instructions/Instructions.cs" id="2_s42og"]
+[ext_resource type="AudioStream" uid="uid://bgy3btespp17e" path="res://Ambient Loop.ogg" id="3_h0xfu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_48wmj"]
 font_color = Color(1, 0.11, 0.11, 1)
@@ -15,7 +17,22 @@ font_color = Color(0.0823529, 0.596078, 1, 1)
 
 [node name="App" type="Node2D"]
 
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(612.25, 816.25)
+scale = Vector2(0.499796, 0.499847)
+texture = ExtResource("1_qn5pv")
+
+[node name="Game" parent="." instance=ExtResource("1_srurr")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(30.88, 41.989)
+color = Color(0, 0, 0, 1)
+
 [node name="Instructions" type="CanvasLayer" parent="."]
+offset = Vector2(0, 1200)
+transform = Transform2D(1, 0, 0, 1, 0, 1200)
 script = ExtResource("1_bwx1b")
 
 [node name="ProgressBar" type="ProgressBar" parent="Instructions"]
@@ -102,20 +119,6 @@ text = "      --(destroy everything)--
 Press any key to start"
 script = ExtResource("2_s42og")
 metadata/_edit_use_anchors_ = true
-[gd_scene load_steps=4 format=3 uid="uid://dl4r243gs3oxs"]
-
-[ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]
-[ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://game.tscn" id="1_srurr"]
-[ext_resource type="AudioStream" uid="uid://bgy3btespp17e" path="res://Ambient Loop.ogg" id="3_h0xfu"]
-
-[node name="App" type="Node2D"]
-
-[node name="background" type="Sprite2D" parent="."]
-position = Vector2(612.25, 816.25)
-scale = Vector2(0.499796, 0.499847)
-texture = ExtResource("1_qn5pv")
-
-[node name="Game" parent="." instance=ExtResource("1_srurr")]
 
 [node name="Audio" type="AudioListener2D" parent="."]
 position = Vector2(585, 1489)
