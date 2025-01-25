@@ -40,7 +40,6 @@ public partial class BubblesContainer : Node2D
 
     public override void _Process(double delta)
     {
-        base._PhysicsProcess(delta);
 		if (_shouldSpawnNewBubble)
 		{
 			SpawnNewControlledBubble();
@@ -59,7 +58,9 @@ public partial class BubblesContainer : Node2D
 				}
 			}
 		}else{
-			_instructionsCanvas.HandleInput(@event);
+			if (_instructionsCanvas.Visible){
+				_instructionsCanvas.HandleInput(@event);
+			}
 		}
     }
 

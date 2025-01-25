@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b712wev3pp8cy" path="res://Sprites/Oil.png" id="2_0rqxu"]
 [ext_resource type="Texture2D" uid="uid://csyhvxutcr8k5" path="res://Sprites/Fire.png" id="3_5ru7x"]
 [ext_resource type="Texture2D" uid="uid://bo1id3bvueavl" path="res://Sprites/Basic.png" id="4_s70lf"]
-[ext_resource type="AudioStream" uid="uid://if5tl7kj0juj" path="res://Bubble_hit.ogg" id="5_53f31"]
+[ext_resource type="AudioStream" uid="uid://b8st526e0cdme" path="res://click2.ogg" id="5_065gu"]
 [ext_resource type="AudioStream" uid="uid://bgd3l6w7xtso" path="res://Bubble_pop.ogg" id="6_svslb"]
 
 [node name="BubblesConfig" type="Node" node_paths=PackedStringArray("_hitSound", "_popSound")]
@@ -16,7 +16,7 @@ _hitSound = NodePath("HitSoundPlayer")
 _popSound = NodePath("PopSoundPlayer")
 
 [node name="HitSoundPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_53f31")
+stream = ExtResource("5_065gu")
 volume_db = 8.0
 
 [node name="PopSoundPlayer" type="AudioStreamPlayer2D" parent="."]

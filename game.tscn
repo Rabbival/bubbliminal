@@ -14,7 +14,7 @@
 radius = 209.09
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1tu2"]
-radius = 107.643
+radius = 120.06
 
 [sub_resource type="LabelSettings" id="LabelSettings_wysqq"]
 font_size = 80
@@ -152,7 +152,7 @@ scale = Vector2(0.833333, 0.9)
 script = ExtResource("7_hs8l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseControl/CollisionDetector"]
-position = Vector2(2.3647, -46.8687)
+position = Vector2(2.3647, -42.3232)
 shape = SubResource("CircleShape2D_h1tu2")
 debug_color = Color(0.875752, 0.262675, 0.567338, 0.42)
 

@@ -56,7 +56,8 @@ public partial class Bubble : Sprite2D
 				if (_bubbleType == BubbleType.Oil)
 				{
 					_bubbleType = BubbleType.Fire;
-					infector._bubbleType = BubbleType.Oil;
+					infector._bubbleType = BubbleType.Fire;
+					infector.ExplodeThenDestory();
 					acted = true;
 				} else if (_bubbleType == BubbleType.Neutral){
 					_bubbleType = BubbleType.Fire;

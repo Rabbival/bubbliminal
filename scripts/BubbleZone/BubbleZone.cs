@@ -11,13 +11,12 @@ public partial class BubbleZone : Node2D
 
 	public override void _Ready()
 	{
-        _countChildrenNextFrame = false;
+        _countChildrenNextFrame = true;
 		foreach (Sprite2D child in GetChildren())
         {
 			double randomNumber = random.NextDouble();
             if (child is Bubble bubble)
             {
-				bubble.WasDestoryed += (Bubble bubble) => _countChildrenNextFrame = true;
 				if (randomNumber > 0.9)
                 {
                     bubble._bubbleType = BubbleType.Oil;
@@ -34,7 +33,6 @@ public partial class BubbleZone : Node2D
     public override void _Process(double _delta)
     {
         if (_countChildrenNextFrame){
-            _countChildrenNextFrame = false;
             DeclareGameDoneByChildCount();
         }
     }
@@ -45,6 +43,7 @@ public partial class BubbleZone : Node2D
 
 	private void DeclareGameDoneByChildCount(){
        if (GetChildCount() <= 1){
+        _countChildrenNextFrame = false;
            EmitSignal(SignalName.GameWon);
        }
     }
