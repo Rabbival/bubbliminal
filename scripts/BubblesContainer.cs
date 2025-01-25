@@ -14,13 +14,13 @@ public partial class BubblesContainer : Node2D
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
 	int _controlledBubbleIndex;
-	bool _shouldSpawnNewBubble = true;
+	bool _shouldSpawnNewBubble;
 
 	public override void _Ready()
 	{
+		_shouldSpawnNewBubble = true;
 		_controlledBubbleIndex = 0;
 		_spawnPosition = _mouseController.Position;
-		SpawnNewControlledBubble();
 	}
 
     public override void _Process(double delta)
@@ -79,6 +79,6 @@ public partial class BubblesContainer : Node2D
 		newbornBubble._controlledBubble = true;
         _controlledBubble = Option.Some(newbornBubble);
 
-		DebugPrinter.Print("spawned a new bubble at: " + _spawnPosition, LogCategory.BubbleContainer);
+		DebugPrinter.Print("Spawned: " + newbornBubble.Name + " at: " + _spawnPosition, LogCategory.BubbleContainer);
     }
 }
