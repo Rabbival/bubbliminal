@@ -25,6 +25,9 @@ public partial class Bubble : Sprite2D
 	[Signal]
 	public delegate void ChainDestructionInitiatedEventHandler(Bubble bubble, int lastDelayInMillis);
 	
+	[Signal]
+	public delegate void WasDestoryedEventHandler(Bubble bubble);
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -114,6 +117,7 @@ public partial class Bubble : Sprite2D
 		FadeOut();
 		await Task.Delay((int)(BubblesConfig.DespawnDuration * 1000));
 		QueueFree();
+		EmitSignal(SignalName.WasDestoryed, this);
 	}
 	
 	public void SetColorByBubbleType(BubbleType bubbleType)

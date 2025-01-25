@@ -5,6 +5,8 @@ using System;
 public partial class BubblesContainer : Node2D
 {
 	[Export]
+	private BubbleZone _bubbleZone;
+	[Export]
 	PackedScene _bubbleScene;
 	[Export]
 	MouseControl _mouseController;
@@ -95,9 +97,11 @@ public partial class BubblesContainer : Node2D
 		_controlledBubbleIndex++;
 
 		ListenForControlledBubbleMovementDone(newbornBubble);
-        AddChild(newbornBubble);
+        _bubbleZone.AddChild(newbornBubble);
+		_bubbleZone.SubscribeToBubble(newbornBubble);
 		newbornBubble._controlledBubble = true;
         _controlledBubble = Option.Some(newbornBubble);
+		
 
 		DebugPrinter.Print("Spawned: " + newbornBubble.Name + " at: " + _spawnPosition, LogCategory.BubbleContainer);
     }
