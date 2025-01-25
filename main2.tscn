@@ -1,34 +1,61 @@
-[gd_scene load_steps=9 format=3 uid="uid://crkfp7sgnn83w"]
+[gd_scene load_steps=10 format=3 uid="uid://chb3qyjaeyq3i"]
 
 [ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="1_mseur"]
 [ext_resource type="Script" path="res://scripts/Shield/Shield.cs" id="2_6tg25"]
 [ext_resource type="Texture2D" uid="uid://dmpo4eukprpfk" path="res://scripts/MouseControl/tank_arrowEmpty.png" id="2_r3v0i"]
+[ext_resource type="Script" path="res://scripts/BubbleZone/BubbleZone.cs" id="3_33s17"]
 [ext_resource type="Script" path="res://scripts/MouseControl/MouseControl.cs" id="3_fha66"]
 [ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://Bubble.tscn" id="4_qucu2"]
 [ext_resource type="Texture2D" uid="uid://b07gbr4b08hlu" path="res://scripts/ChanceManager/tanks_crateWood.png" id="5_y82dx"]
 [ext_resource type="Script" path="res://scripts/ChanceManager/ChanceManager.cs" id="6_q75d3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf1dt"]
-radius = 37.5151
+radius = 509.339
 
 [node name="Game" type="Node2D"]
 
-[node name="BubblesContainer" type="Node2D" parent="." node_paths=PackedStringArray("_firstControlledBubble")]
+[node name="BubblesContainer" type="Node2D" parent="." node_paths=PackedStringArray("_mouseController")]
 script = ExtResource("1_mseur")
-_firstControlledBubble = NodePath("FirstBubble")
+_bubbleScene = ExtResource("4_qucu2")
+_mouseController = NodePath("MouseControl")
+
+[node name="BubbleZone" type="Sprite2D" parent="BubblesContainer"]
+position = Vector2(501, -52)
+scale = Vector2(1.04687, 0.820313)
+script = ExtResource("3_33s17")
+
+[node name="Bubble" parent="BubblesContainer/BubbleZone" instance=ExtResource("4_qucu2")]
+position = Vector2(-101.522, 227.474)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble3" parent="BubblesContainer/BubbleZone" instance=ExtResource("4_qucu2")]
+position = Vector2(286.301, 181.15)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble4" parent="BubblesContainer/BubbleZone" instance=ExtResource("4_qucu2")]
+position = Vector2(135.375, 156.769)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble5" parent="BubblesContainer/BubbleZone" instance=ExtResource("4_qucu2")]
+position = Vector2(-231.433, 177.493)
+scale = Vector2(0.45851, 0.487619)
+
+[node name="Bubble6" parent="BubblesContainer/BubbleZone" instance=ExtResource("4_qucu2")]
+position = Vector2(10.2401, 79.9695)
+scale = Vector2(0.45851, 0.487619)
 
 [node name="Shield" type="Sprite2D" parent="BubblesContainer"]
-position = Vector2(594, 476)
+position = Vector2(537, 214)
 scale = Vector2(1.04687, 0.820313)
 
 [node name="CollisionDetector2" type="Area2D" parent="BubblesContainer/Shield"]
-position = Vector2(-10.5075, -68.2667)
+position = Vector2(43.9405, 14.6285)
 scale = Vector2(0.731, 1.007)
 disable_mode = 1
 script = ExtResource("2_6tg25")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BubblesContainer/Shield/CollisionDetector2"]
-position = Vector2(-67.9506, -38.7383)
+position = Vector2(-50.963, -9.68459)
 scale = Vector2(1.36, 1.36)
 shape = SubResource("CircleShape2D_mf1dt")
 
@@ -38,9 +65,6 @@ scale = Vector2(1.22527, 1.375)
 texture = ExtResource("2_r3v0i")
 script = ExtResource("3_fha66")
 
-[node name="Bubble" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(443, 119)
-
 [node name="ChanceManager" type="Sprite2D" parent="BubblesContainer"]
 position = Vector2(85, 557)
 scale = Vector2(2.2, 1.59414)
@@ -48,17 +72,6 @@ texture = ExtResource("5_y82dx")
 centered = false
 script = ExtResource("6_q75d3")
 
-[node name="Bubble3" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(826, 172)
-
-[node name="Bubble4" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(711, 158)
-
-[node name="Bubble5" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(270, 162)
-
-[node name="Bubble6" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(597, 139)
-
 [node name="FirstBubble" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
 position = Vector2(530, 383)
+_bubbleTypeValue = 2
