@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://scripts/Bubble/BubbleCollisionDetector.cs" id="3_t44vo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uwyuy"]
-radius = 120.0
+radius = 107.643
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n7jur"]
-radius = 104.999
+radius = 92.0972
 
 [node name="Bubble" type="Sprite2D"]
-scale = Vector2(0.48, 0.4)
+scale = Vector2(0.409165, 0.38238)
 texture = ExtResource("1_c3yh2")
 script = ExtResource("1_sm2la")
 

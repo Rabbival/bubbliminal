@@ -40,6 +40,7 @@ public partial class Bubble : Sprite2D
 
 		bool acted = false;
 		infector.DeclarePositionTweenDone();
+		DeclarePositionTweenDone();
 		if (_bubbleType != infector._bubbleType){
 			BubbleType temp = _bubbleType;
 			_bubbleType = infector._bubbleType;
@@ -78,7 +79,7 @@ public partial class Bubble : Sprite2D
 		ExplodeThenDestory();
 	}
 
-	private async void ExplodeThenDestory(){
+	public async void ExplodeThenDestory(){
 		TweenScale();
 		FadeOut();
 		await Task.Delay((int)(BubblesConfig.DespawnDuration * 1000));

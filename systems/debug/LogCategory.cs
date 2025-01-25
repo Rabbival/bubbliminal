@@ -4,5 +4,6 @@ public enum LogCategory {
     Bubble,
     BubbleCollision,
     BubbleContainer,
-    ChanceManager
+    ChanceManager,
+    Shield
 }

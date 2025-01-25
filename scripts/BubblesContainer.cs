@@ -71,11 +71,13 @@ public partial class BubblesContainer : Node2D
 
 	private void OnControlledBubbleMovementDone(Bubble controlledBubble)
 	{
-		_shouldSpawnNewBubble = false;
+		_lastShotBubbleIsMoving = false;
 		_shouldSpawnNewBubble = true;
 	}
 
 	private void SpawnNewControlledBubble(){
+		_lastShotBubbleIsMoving = false;
+		
         Bubble newbornBubble = _bubbleScene.Instantiate<Bubble>();
 		newbornBubble.Name = "ControlledBubble" + _controlledBubbleIndex;
         newbornBubble._bubbleType = ChanceManager.GetNextBubbleType();

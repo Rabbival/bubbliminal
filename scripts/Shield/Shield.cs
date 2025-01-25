@@ -13,7 +13,7 @@ public partial class Shield : Area2D
         Bubble parent = body.GetParent<Bubble>();
 
 
-        GD.Print("my parent is"  + parent.Name);
+        DebugPrinter.Print("my parent is"  + parent.Name, LogCategory.Shield);
 
 
         parent.DeclarePositionTweenDone();
