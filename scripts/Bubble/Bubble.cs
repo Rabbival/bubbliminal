@@ -143,7 +143,7 @@ public partial class Bubble : Sprite2D
 		callOnceDone();
 	}
 
-	private void DeclarePositionTweenDone(){
+	public void DeclarePositionTweenDone(){
 		DebugPrinter.Print("Position tween done for: " + Name, LogCategory.Bubble);	
 
 		_activePositionTween.MatchSome(tween => tween.Kill());

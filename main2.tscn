@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxotr1iysxjmr"]
+[gd_scene load_steps=9 format=3 uid="uid://crkfp7sgnn83w"]
 
 [ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="1_mseur"]
 [ext_resource type="Script" path="res://scripts/Shield/Shield.cs" id="2_6tg25"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/ChanceManager/ChanceManager.cs" id="6_q75d3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf1dt"]
-radius = 226.528
+radius = 37.5151
 
 [node name="Game" type="Node2D"]
 
@@ -24,10 +24,11 @@ scale = Vector2(1.04687, 0.820313)
 [node name="CollisionDetector2" type="Area2D" parent="BubblesContainer/Shield"]
 position = Vector2(-10.5075, -68.2667)
 scale = Vector2(0.731, 1.007)
+disable_mode = 1
 script = ExtResource("2_6tg25")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BubblesContainer/Shield/CollisionDetector2"]
-position = Vector2(3.60003, 1.11113)
+position = Vector2(-67.9506, -38.7383)
 scale = Vector2(1.36, 1.36)
 shape = SubResource("CircleShape2D_mf1dt")
 
@@ -38,7 +39,7 @@ texture = ExtResource("2_r3v0i")
 script = ExtResource("3_fha66")
 
 [node name="Bubble" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(423, 213)
+position = Vector2(443, 119)
 
 [node name="ChanceManager" type="Sprite2D" parent="BubblesContainer"]
 position = Vector2(85, 557)
@@ -51,13 +52,13 @@ script = ExtResource("6_q75d3")
 position = Vector2(826, 172)
 
 [node name="Bubble4" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(729, 380)
+position = Vector2(711, 158)
 
 [node name="Bubble5" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(210, 286)
+position = Vector2(270, 162)
 
 [node name="Bubble6" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
 position = Vector2(597, 139)
 
 [node name="FirstBubble" parent="BubblesContainer" instance=ExtResource("4_qucu2")]
-position = Vector2(526, 381)
+position = Vector2(530, 383)
