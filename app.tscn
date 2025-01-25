@@ -153,5 +153,6 @@ offset_top = 513.0
 offset_right = 829.0
 offset_bottom = 736.0
 text = "Game Won!
-Turns Taken:"
+Turns Taken:
+(Press any key)"
 label_settings = SubResource("LabelSettings_hjbwy")
