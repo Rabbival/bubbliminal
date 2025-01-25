@@ -3,6 +3,9 @@ using System;
 
 public partial class InstructionsCanvas : CanvasLayer
 {
+	[Export]
+	ColorRect blackScreen;
+
 	private Node2D game; 
 	public override void _Ready()
 	{
@@ -12,13 +15,11 @@ public partial class InstructionsCanvas : CanvasLayer
 		
 	}
 
-	public override void _Input(InputEvent @event)
+	public void HandleInput(InputEvent @event)
 	{
-		//GD.Print("Game node is still null.");
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed || @event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
         {
-            GD.Print("Input received: ");
-            GD.Print("Game node is still null.");
+			blackScreen.Visible = false;
 			Visible = false;
         	game.Visible = true;
         }
@@ -33,9 +34,4 @@ public partial class InstructionsCanvas : CanvasLayer
         
         game.Visible = true;
     }
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 }

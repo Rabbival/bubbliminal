@@ -3,6 +3,7 @@ using System;
 
 public partial class Instructions : Label
 {
+	[Export]
 	private float moveSpeed = 50f; 
 
     

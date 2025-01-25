@@ -56,7 +56,7 @@ public partial class Bubble : Sprite2D
 					acted = true;
 				} else if (_bubbleType == BubbleType.Neutral){
 					_bubbleType = BubbleType.Fire;
-					infector._bubbleType = BubbleType.Fire;
+					infector._bubbleType = BubbleType.Neutral;
 					acted = true;
 				}
 				break;

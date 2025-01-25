@@ -10,6 +10,8 @@ public partial class BubblesContainer : Node2D
 	MouseControl _mouseController;
 	[Export]
 	AudioStreamPlayer2D _shootingSound { get; set; }
+	[Export]
+	InstructionsCanvas _instructionsCanvas;
 
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
@@ -37,12 +39,16 @@ public partial class BubblesContainer : Node2D
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseMotion)
-		{
-			if (mouseMotion.Pressed && mouseMotion.ButtonIndex == MouseButton.Left)
+		if (Visible){
+			if (@event is InputEventMouseButton mouseMotion)
 			{
-				ShootControlledBubble();
+				if (mouseMotion.Pressed && mouseMotion.ButtonIndex == MouseButton.Left)
+				{
+					ShootControlledBubble();
+				}
 			}
+		}else{
+			_instructionsCanvas.HandleInput(@event);
 		}
     }
 
