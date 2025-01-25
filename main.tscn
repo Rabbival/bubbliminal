@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="5_8d6ma"]
 [ext_resource type="Texture2D" uid="uid://b07gbr4b08hlu" path="res://scripts/ChanceManager/tanks_crateWood.png" id="5_eq7a4"]
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 
 [node name="BubblesContainer" type="Node2D" parent="." node_paths=PackedStringArray("_mouseController")]
 script = ExtResource("5_8d6ma")
