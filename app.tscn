@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl4r243gs3oxs"]
+[gd_scene load_steps=9 format=3 uid="uid://b4ikx827o3d1q"]
 
 [ext_resource type="Script" path="res://scripts/Instructions/InstructionsCanvas.cs" id="1_bwx1b"]
 [ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]

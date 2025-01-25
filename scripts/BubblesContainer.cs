@@ -4,6 +4,10 @@ using System;
 
 public partial class BubblesContainer : Node2D
 {
+	//test
+	[Export]
+	private BubbleZone _bubbleZone;
+	//test
 	[Export]
 	PackedScene _bubbleScene;
 	[Export]
@@ -95,10 +99,13 @@ public partial class BubblesContainer : Node2D
 		_controlledBubbleIndex++;
 
 		ListenForControlledBubbleMovementDone(newbornBubble);
-        AddChild(newbornBubble);
+		//test
+		_bubbleZone.AddChild(newbornBubble);
+		//test
+        //AddChild(newbornBubble);
 		newbornBubble._controlledBubble = true;
         _controlledBubble = Option.Some(newbornBubble);
-
+		GD.Print("Number of children in BubbleZone: " + _bubbleZone.GetChildCount());
 		DebugPrinter.Print("Spawned: " + newbornBubble.Name + " at: " + _spawnPosition, LogCategory.BubbleContainer);
     }
 }

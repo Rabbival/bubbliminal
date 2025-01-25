@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crkfp7sgnn83w"]
+[gd_scene load_steps=13 format=3 uid="uid://crkfp7sgnn83w"]
 
 [ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="1_ujs8n"]
 [ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://Bubble.tscn" id="2_e1ta5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/ChanceManager/ChanceManager.cs" id="6_8m3ab"]
 [ext_resource type="Script" path="res://ArrowCollider.cs" id="7_hs8l5"]
 [ext_resource type="AudioStream" uid="uid://i65c4givbyse" path="res://shoot.ogg" id="9_48roe"]
+[ext_resource type="Script" path="res://scripts/Bubble/BubbleCount.cs" id="10_0tnhn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf1dt"]
 radius = 209.09
@@ -16,9 +17,11 @@ radius = 209.09
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1tu2"]
 radius = 107.643
 
-[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_mouseController", "_shootingSound")]
+[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_bubbleZone", "_mouseController", "_shootingSound")]
+position = Vector2(-187, -299)
 scale = Vector2(1.64, 1.6)
 script = ExtResource("1_ujs8n")
+_bubbleZone = NodePath("BubbleZone")
 _bubbleScene = ExtResource("2_e1ta5")
 _mouseController = NodePath("MouseControl")
 _shootingSound = NodePath("ShotSoundPlayer")
@@ -39,100 +42,100 @@ scale = Vector2(1.36, 1.36)
 shape = SubResource("CircleShape2D_mf1dt")
 
 [node name="BubbleZone" type="Sprite2D" parent="."]
-position = Vector2(335.366, 195.625)
+position = Vector2(-24.3902, 123.75)
 scale = Vector2(1.04687, 0.820313)
 script = ExtResource("4_wp76h")
 
 [node name="Bubble" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-172.896, 216.99)
+position = Vector2(175.943, 323.169)
 scale = Vector2(0.482987, 0.481905)
 
 [node name="Bubble3" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-21.015, 9.75238)
+position = Vector2(327.824, 115.931)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble4" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(54.448, 1.21905)
+position = Vector2(403.287, 107.398)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble5" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-92.6572, 49.9809)
+position = Vector2(256.182, 156.16)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble6" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-145.195, 125.562)
+position = Vector2(203.644, 231.741)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble2" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(286.569, 234.057)
+position = Vector2(635.408, 340.236)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble7" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(136.598, 17.0667)
+position = Vector2(485.437, 123.246)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble11" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-1.91043, 282.819)
+position = Vector2(346.928, 388.998)
 scale = Vector2(0.482987, 0.481905)
 
 [node name="Bubble12" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-19.1046, 104.838)
+position = Vector2(329.734, 211.017)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble13" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(46.8062, 80.4571)
+position = Vector2(395.645, 186.636)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble14" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-76.4183, 174.324)
+position = Vector2(272.421, 280.503)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble15" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-92.6572, 276.724)
+position = Vector2(256.182, 382.903)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble16" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(175.762, 145.067)
+position = Vector2(524.601, 251.246)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble17" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(111.762, 106.057)
+position = Vector2(460.601, 212.236)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble8" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(212.061, 62.1714)
+position = Vector2(560.9, 168.35)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble9" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(241.673, 308.419)
+position = Vector2(590.512, 414.598)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble10" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(259.822, 143.848)
+position = Vector2(608.661, 250.027)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble18" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(-7.64182, 196.267)
+position = Vector2(341.197, 302.446)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble19" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(68.7765, 177.981)
+position = Vector2(417.615, 284.16)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble20" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(80.2392, 282.819)
+position = Vector2(429.078, 388.998)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble21" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(209.195, 218.209)
+position = Vector2(558.034, 324.388)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble22" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(128.956, 209.676)
+position = Vector2(477.795, 315.855)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="Bubble23" parent="BubbleZone" instance=ExtResource("2_e1ta5")]
-position = Vector2(170.031, 301.105)
+position = Vector2(518.87, 407.284)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="MouseControl" type="Sprite2D" parent="."]
@@ -157,3 +160,6 @@ script = ExtResource("6_8m3ab")
 [node name="ShotSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_48roe")
 volume_db = 8.0
+
+[node name="BubbleCount" type="Sprite2D" parent="."]
+script = ExtResource("10_0tnhn")

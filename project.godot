@@ -22,8 +22,8 @@ BubblesConfig="*res://systems/bubbles_config/bubbles_config.tscn"
 
 [display]
 
-window/size/viewport_width=1224
-window/size/viewport_height=1632
+window/size/viewport_width=1550
+window/size/viewport_height=1500
 
 [dotnet]
 
