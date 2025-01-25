@@ -85,7 +85,7 @@ public partial class Bubble : Sprite2D
 		QueueFree();
 	}
 	
-	private void SetColorByBubbleType(BubbleType bubbleType)
+	public void SetColorByBubbleType(BubbleType bubbleType)
 	{
 		if (_deemedForDestruction) return;
 
