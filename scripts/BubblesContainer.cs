@@ -14,6 +14,7 @@ public partial class BubblesContainer : Node2D
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
 	int _controlledBubbleIndex;
+	bool _shouldSpawnNewBubble = true;
 
 	public override void _Ready()
 	{
@@ -21,6 +22,16 @@ public partial class BubblesContainer : Node2D
 		_spawnPosition = _mouseController.Position;
 		SpawnNewControlledBubble();
 	}
+
+    public override void _Process(double delta)
+    {
+        base._PhysicsProcess(delta);
+		if (_shouldSpawnNewBubble)
+		{
+			SpawnNewControlledBubble();
+			_shouldSpawnNewBubble = false;
+		}
+    }
 
     public override void _Input(InputEvent @event)
     {
@@ -53,7 +64,7 @@ public partial class BubblesContainer : Node2D
 	private void OnControlledBubbleMovementDone(Bubble controlledBubble)
 	{
 		controlledBubble._controlledBubble = false;
-		SpawnNewControlledBubble();
+		_shouldSpawnNewBubble = true;
 	}
 
 	private void SpawnNewControlledBubble(){
