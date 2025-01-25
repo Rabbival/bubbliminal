@@ -29,19 +29,19 @@ centered = false
 script = ExtResource("5_4i7oa")
 
 [node name="Bubble" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
-position = Vector2(423, 213)
+position = Vector2(189, 176)
 _bubbleTypeValue = 2
 
 [node name="Bubble3" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
-position = Vector2(656, 241)
+position = Vector2(814, 384)
 
 [node name="Bubble4" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
-position = Vector2(590, 252)
+position = Vector2(782, 78)
 
 [node name="Bubble5" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
-position = Vector2(522, 263)
+position = Vector2(962, 175)
 _bubbleTypeValue = 2
 
 [node name="Bubble6" parent="BubblesContainer" instance=ExtResource("4_v8c2a")]
-position = Vector2(469, 256)
+position = Vector2(388, 58)
 _bubbleTypeValue = 2

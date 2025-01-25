@@ -13,9 +13,11 @@ public partial class BubblesContainer : Node2D
 
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
+	int _controlledBubbleIndex;
 
 	public override void _Ready()
 	{
+		_controlledBubbleIndex = 0;
 		_spawnPosition = _mouseController.Position;
 		SpawnNewControlledBubble();
 	}
@@ -56,13 +58,16 @@ public partial class BubblesContainer : Node2D
 
 	private void SpawnNewControlledBubble(){
         Bubble newbornBubble = _bubbleScene.Instantiate<Bubble>();
-		newbornBubble._controlledBubble = true;
+		newbornBubble.Name = "ControlledBubble" + _controlledBubbleIndex;
         newbornBubble._bubbleType = ChanceManager.GetNextBubbleType();
+		newbornBubble.Position = _spawnPosition;
+		_controlledBubbleIndex++;
+
 		ListenForControlledBubbleMovementDone(newbornBubble);
         AddChild(newbornBubble);
-		newbornBubble.Position = _spawnPosition;
+		newbornBubble._controlledBubble = true;
         _controlledBubble = Option.Some(newbornBubble);
 
-		DebugPrinter.Print("spawned a new bubble at: " + _spawnPosition, LogCategory.Bubble);
+		DebugPrinter.Print("spawned a new bubble at: " + _spawnPosition, LogCategory.BubbleContainer);
     }
 }
