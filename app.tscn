@@ -1,3 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4ikx827o3d1q"]
+
+[ext_resource type="Script" path="res://scripts/Instructions/InstructionsCanvas.cs" id="1_bwx1b"]
+[ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://game.tscn" id="1_srurr"]
+[ext_resource type="Script" path="res://scripts/Instructions/Instructions.cs" id="2_s42og"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_48wmj"]
+font_color = Color(1, 0.11, 0.11, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kk8nc"]
+font_color = Color(0, 1, 0.0666666, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kwk1d"]
+font_color = Color(0.0823529, 0.596078, 1, 1)
+
+[node name="App" type="Node2D"]
+
+[node name="Instructions" type="CanvasLayer" parent="."]
+script = ExtResource("1_bwx1b")
+
+[node name="ProgressBar" type="ProgressBar" parent="Instructions"]
+offset_left = 307.0
+offset_top = 121.0
+offset_right = 311.0
+offset_bottom = 148.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Instructions/ProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.75
+anchor_top = 19.963
+anchor_right = 10.25
+anchor_bottom = 26.7037
+offset_right = 176.0
+offset_bottom = 49.0
+scale = Vector2(2.45, 2.45)
+script = ExtResource("2_s42og")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="Instructions/ProgressBar/Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.72279
+anchor_top = 19.9753
+anchor_right = 10.2772
+anchor_bottom = 26.7161
+offset_left = 1380.0
+offset_top = -4611.44
+offset_right = -2324.0
+offset_bottom = -6145.56
+text = "The fire destructs"
+label_settings = SubResource("LabelSettings_48wmj")
+script = ExtResource("2_s42og")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Instructions/ProgressBar/Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.68104
+anchor_top = 20.2007
+anchor_right = 10.319
+anchor_bottom = 26.9414
+offset_left = 1371.2
+offset_top = -4641.87
+offset_right = -2228.8
+offset_bottom = -6123.98
+text = "The oil spreads the destruction"
+label_settings = SubResource("LabelSettings_kk8nc")
+script = ExtResource("2_s42og")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Instructions/ProgressBar/Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0391151
+anchor_top = 0.197897
+anchor_right = 16.0391
+anchor_bottom = 6.93864
+offset_left = 0.00012207
+offset_right = -3676.0
+offset_bottom = -1534.11
+text = "Neutral does nothing"
+label_settings = SubResource("LabelSettings_kwk1d")
+script = ExtResource("2_s42og")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="Instructions/ProgressBar/Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -5.70748
+anchor_top = 20.3287
+anchor_right = 10.2925
+anchor_bottom = 27.0695
+offset_left = 1380.0
+offset_top = -4611.44
+offset_right = -2259.0
+offset_bottom = -6093.56
+text = "      --(destroy everything)--
+
+Press any key to start"
+script = ExtResource("2_s42og")
+metadata/_edit_use_anchors_ = true
 [gd_scene load_steps=4 format=3 uid="uid://dl4r243gs3oxs"]
 
 [ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]
