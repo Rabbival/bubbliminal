@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl4r243gs3oxs"]
+[gd_scene load_steps=4 format=3 uid="uid://dl4r243gs3oxs"]
 
 [ext_resource type="Texture2D" uid="uid://b864kmb68y62o" path="res://20250125_121909.jpg" id="1_qn5pv"]
 [ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://game.tscn" id="1_srurr"]
+[ext_resource type="AudioStream" uid="uid://bgy3btespp17e" path="res://Ambient Loop.ogg" id="3_h0xfu"]
 
 [node name="App" type="Node2D"]
 
@@ -11,3 +12,14 @@ scale = Vector2(0.499796, 0.499847)
 texture = ExtResource("1_qn5pv")
 
 [node name="Game" parent="." instance=ExtResource("1_srurr")]
+
+[node name="Audio" type="AudioListener2D" parent="."]
+position = Vector2(585, 1489)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_h0xfu")
+volume_db = -8.0
+pitch_scale = 0.8
+autoplay = true
+mix_target = 1
+parameters/looping = true
