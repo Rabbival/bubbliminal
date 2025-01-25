@@ -87,17 +87,13 @@ public partial class BubblesContainer : Node2D
 	{
 		_controlledBubble.Match(
 			some: bubble => {
-				float rotation = _mouseController.GlobalRotation - Mathf.Pi / 2;
-				Vector2 direction = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
-				Vector2 deltaVector = direction * BubblesConfig.FurthestDistance;
-				Vector2 targetLocation = bubble.Position + deltaVector;
-				float delta = deltaVector.Length();
-				bubble.TweenPosition(targetLocation, delta);
+				TweenBubblePosition(bubble);
 				_controlledBubble = Option.None<Bubble>();
 				_lastShotBubbleIsMoving = true;
 				if (_shootingSound != null) _shootingSound.Play();
 				_shotsTakenCounter++;
 				UpdateLabel(_shotsTakenCounter);
+				_mouseController.VisualizeShooting();
 			}, 
 			none: () => {
 				if (!_lastShotBubbleIsMoving){
@@ -105,6 +101,15 @@ public partial class BubblesContainer : Node2D
 				}
 			}
 		);
+	}
+
+	private void TweenBubblePosition(Bubble bubble){
+		float rotation = _mouseController.GlobalRotation - Mathf.Pi / 2;
+		Vector2 direction = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+		Vector2 deltaVector = direction * BubblesConfig.FurthestDistance;
+		Vector2 targetLocation = bubble.Position + deltaVector;
+		float delta = deltaVector.Length();
+		bubble.TweenPosition(targetLocation, delta);
 	}
 
 	private void ListenForControlledBubbleMovementDone(Bubble controlledBubble)

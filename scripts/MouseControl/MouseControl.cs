@@ -46,18 +46,12 @@ public partial class MouseControl : Node2D
 		
 	}
 
-	public override void _Input(InputEvent @event)
+	public void VisualizeShooting()
     {
-        if (@event is InputEventMouseButton mouseEvent)
-        {
-            if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
-            {
-				Scale = new Vector2(originalScale.X, originalScale.Y * 0.8f);
-				Position = new Vector2(originalPosition.X, originalPosition.Y + 10);
+        Scale = new Vector2(originalScale.X, originalScale.Y * 0.8f);
+        Position = new Vector2(originalPosition.X, originalPosition.Y + 10);
 
-				isScaling = true;
-                timer = 0f;
-            }
-        }
+        isScaling = true;
+        timer = 0f;
     }
 }

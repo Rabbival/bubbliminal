@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/App.cs" id="1_1naqk"]
 [ext_resource type="Script" path="res://scripts/Instructions/InstructionsCanvas.cs" id="1_bwx1b"]
-[ext_resource type="Texture2D" uid="uid://ch4ui0jpifre0" path="res://sprites/background.jpg" id="1_qn5pv"]
+[ext_resource type="Texture2D" uid="uid://ch4ui0jpifre0" path="res://Sprites/background.jpg" id="1_qn5pv"]
 [ext_resource type="Script" path="res://scripts/Instructions/Instructions.cs" id="2_s42og"]
 [ext_resource type="AudioStream" uid="uid://bgy3btespp17e" path="res://audio/Ambient Loop.ogg" id="3_h0xfu"]
-[ext_resource type="Texture2D" uid="uid://fiibsb4y40hn" path="res://sprites/machine.png" id="6_xu677"]
+[ext_resource type="Texture2D" uid="uid://fiibsb4y40hn" path="res://Sprites/machine.png" id="6_xu677"]
 [ext_resource type="PackedScene" uid="uid://crkfp7sgnn83w" path="res://scenes/game.tscn" id="7_ewkpa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_48wmj"]
