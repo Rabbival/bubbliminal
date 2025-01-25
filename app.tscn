@@ -34,7 +34,6 @@ scale = Vector2(1.8653, 1.84)
 texture = ExtResource("6_xu677")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(30.88, 41.989)

@@ -39,6 +39,7 @@ public partial class Bubble : Sprite2D
 		if (_deemedForDestruction || infector._deemedForDestruction) return new ActionPerformed(false);
 
 		bool acted = false;
+		BubblesConfig.HitSound.Play();
 		infector.DeclarePositionTweenDone();
 		DeclarePositionTweenDone();
 		switch (infector._bubbleType){
@@ -108,6 +109,7 @@ public partial class Bubble : Sprite2D
 	}
 
 	public async void ExplodeThenDestory(){
+		BubblesConfig.PopSound.Play();
 		TweenScale();
 		FadeOut();
 		await Task.Delay((int)(BubblesConfig.DespawnDuration * 1000));
