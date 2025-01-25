@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmpo4eukprpfk"
-path="res://.godot/imported/tank_arrowEmpty.png-ca0f4f74712a3137231cf1eb82a1bb4e.ctex"
+path="res://.godot/imported/tank_arrowEmpty.png-1643c09f8823b23443f4ad1b2fd54e18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scripts/MouseControl/tank_arrowEmpty.png"
-dest_files=["res://.godot/imported/tank_arrowEmpty.png-ca0f4f74712a3137231cf1eb82a1bb4e.ctex"]
+source_file="res://sprites/tank_arrowEmpty.png"
+dest_files=["res://.godot/imported/tank_arrowEmpty.png-1643c09f8823b23443f4ad1b2fd54e18.ctex"]
 
 [params]
 

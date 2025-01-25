@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://crkfp7sgnn83w"]
 
 [ext_resource type="Script" path="res://scripts/BubblesContainer.cs" id="1_ujs8n"]
-[ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://Bubble.tscn" id="2_e1ta5"]
+[ext_resource type="PackedScene" uid="uid://cjtbv62whs7xu" path="res://scenes/Bubble.tscn" id="2_e1ta5"]
 [ext_resource type="Script" path="res://scripts/Shield/Shield.cs" id="3_a646t"]
-[ext_resource type="Texture2D" uid="uid://dmpo4eukprpfk" path="res://scripts/MouseControl/tank_arrowEmpty.png" id="3_epcbt"]
+[ext_resource type="Texture2D" uid="uid://dmpo4eukprpfk" path="res://sprites/tank_arrowEmpty.png" id="3_epcbt"]
 [ext_resource type="Script" path="res://scripts/MouseControl/MouseControl.cs" id="4_4hgru"]
 [ext_resource type="Script" path="res://scripts/BubbleZone/BubbleZone.cs" id="4_wp76h"]
 [ext_resource type="Script" path="res://scripts/ChanceManager/ChanceManager.cs" id="6_8m3ab"]
-[ext_resource type="Script" path="res://ArrowCollider.cs" id="7_hs8l5"]
-[ext_resource type="AudioStream" uid="uid://i65c4givbyse" path="res://shoot.ogg" id="9_48roe"]
+[ext_resource type="Script" path="res://scripts/MouseControl/ArrowCollider.cs" id="7_hs8l5"]
+[ext_resource type="AudioStream" uid="uid://i65c4givbyse" path="res://audio/shoot.ogg" id="9_48roe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf1dt"]
 radius = 209.09

@@ -5,14 +5,12 @@ public partial class InstructionsCanvas : CanvasLayer
 {
 	[Export]
 	ColorRect blackScreen;
+	[Export]
+	BubblesContainer bubblesContainer;
 
-	private Node2D game; 
 	public override void _Ready()
 	{
-		game = GetParent().GetNode<Node2D>("Game");
-        
-    	game.Visible = false;
-		
+    	bubblesContainer.Visible = false;
 	}
 
 	public void HandleInput(InputEvent @event)
@@ -21,7 +19,7 @@ public partial class InstructionsCanvas : CanvasLayer
         {
 			blackScreen.Visible = false;
 			Visible = false;
-        	game.Visible = true;
+        	bubblesContainer.Visible = true;
         }
 	}
 	private void OnAnyButtonPressed()
@@ -32,6 +30,6 @@ public partial class InstructionsCanvas : CanvasLayer
         this.Visible = false;
         
         
-        game.Visible = true;
+        bubblesContainer.Visible = true;
     }
 }
