@@ -41,6 +41,8 @@ public partial class BubbleCollisionDetector : Area2D
 				if (overlappingBubble != _parentBubble &&
 					overlappingBubble._bubbleType == BubbleType.Oil
 				){
+					DebugPrinter.Print("Initiating chain destruct for: " + overlappingBubble.Name, LogCategory.BubbleCollision);
+
 					overlappingBubble.ChainDestruct(
 						awaitTimeInMillis: lastDelayInMillis + 
 						_parentBubble._awaitTimeIncrementationInMillis

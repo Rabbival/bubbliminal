@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 DebugConfig="*res://systems/debug/debug_config.tscn"
 BubblesConfig="*res://systems/bubbles_config/bubbles_config.tscn"
 
+[display]
+
+window/size/viewport_width=1224
+window/size/viewport_height=1632
+
 [dotnet]
 
 project/assembly_name="Bubbliminal"

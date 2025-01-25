@@ -36,16 +36,41 @@ public partial class Bubble : Sprite2D
 
 	public ActionPerformed Infect(Bubble infector)
 	{
-		if (_deemedForDestruction) return new ActionPerformed(false);
+		if (_deemedForDestruction || infector._deemedForDestruction) return new ActionPerformed(false);
 
 		bool acted = false;
 		infector.DeclarePositionTweenDone();
 		DeclarePositionTweenDone();
-		if (_bubbleType != infector._bubbleType){
-			BubbleType temp = _bubbleType;
-			_bubbleType = infector._bubbleType;
-			infector._bubbleType = temp;
-			acted = true;
+		switch (infector._bubbleType){
+			case BubbleType.Neutral:
+				if (_bubbleType == BubbleType.Oil){
+					infector._bubbleType = BubbleType.Oil;
+					acted = true;
+				}
+				break;
+			case BubbleType.Fire:
+				if (_bubbleType == BubbleType.Oil)
+				{
+					_bubbleType = BubbleType.Fire;
+					infector._bubbleType = BubbleType.Oil;
+					acted = true;
+				} else if (_bubbleType == BubbleType.Neutral){
+					_bubbleType = BubbleType.Fire;
+					infector._bubbleType = BubbleType.Fire;
+					acted = true;
+				}
+				break;
+			case BubbleType.Oil:
+				if (_bubbleType == BubbleType.Fire)
+				{
+					_bubbleType = BubbleType.Oil;
+					infector._bubbleType = BubbleType.Fire;
+					acted = true;
+				}else if (_bubbleType == BubbleType.Neutral){
+					_bubbleType = BubbleType.Oil;
+					acted = true;
+				}
+				break;
 		}
 		return new ActionPerformed(acted);
 	}
@@ -55,6 +80,9 @@ public partial class Bubble : Sprite2D
 
 		DebugPrinter.Print("Setting state to: " + bubbleType + " for: " + Name, LogCategory.Bubble);
 		HandleSpecialStateTransitions(_bubbleTypeValue, bubbleType);
+		if (!_deemedForDestruction){
+			SetColorByBubbleType(bubbleType);
+		}
 		_bubbleTypeValue = bubbleType;
 	}
 

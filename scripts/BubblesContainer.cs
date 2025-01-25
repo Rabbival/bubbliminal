@@ -8,6 +8,8 @@ public partial class BubblesContainer : Node2D
 	PackedScene _bubbleScene;
 	[Export]
 	MouseControl _mouseController;
+	[Export]
+	AudioStreamPlayer2D _shootingSound { get; set; }
 
 	Option<Bubble> _controlledBubble;
 	Vector2 _spawnPosition;
@@ -48,13 +50,15 @@ public partial class BubblesContainer : Node2D
 	{
 		_controlledBubble.Match(
 			some: bubble => {
-				Vector2 mousePosition = GetViewport().GetMousePosition();
-				Vector2 deltaVector = (mousePosition - bubble.GlobalPosition).Normalized() * BubblesConfig.FurthestDistance;
-				Vector2 targetLocation = bubble.GlobalPosition + deltaVector;
+				float rotation = _mouseController.GlobalRotation - Mathf.Pi / 2;
+				Vector2 direction = new Vector2(Mathf.Cos(rotation), Mathf.Sin(rotation));
+				Vector2 deltaVector = direction * BubblesConfig.FurthestDistance;
+				Vector2 targetLocation = bubble.Position + deltaVector;
 				float delta = deltaVector.Length();
 				bubble.TweenPosition(targetLocation, delta);
 				_controlledBubble = Option.None<Bubble>();
 				_lastShotBubbleIsMoving = true;
+				if (_shootingSound != null) _shootingSound.Play();
 			}, 
 			none: () => {
 				if (!_lastShotBubbleIsMoving){

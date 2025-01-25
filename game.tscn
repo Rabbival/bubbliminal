@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dmpo4eukprpfk" path="res://scripts/MouseControl/tank_arrowEmpty.png" id="3_epcbt"]
 [ext_resource type="Script" path="res://scripts/MouseControl/MouseControl.cs" id="4_4hgru"]
 [ext_resource type="Script" path="res://scripts/BubbleZone/BubbleZone.cs" id="4_wp76h"]
-[ext_resource type="Texture2D" uid="uid://b07gbr4b08hlu" path="res://scripts/ChanceManager/tanks_crateWood.png" id="5_g723b"]
 [ext_resource type="Script" path="res://scripts/ChanceManager/ChanceManager.cs" id="6_8m3ab"]
 [ext_resource type="Script" path="res://ArrowCollider.cs" id="7_hs8l5"]
+[ext_resource type="AudioStream" uid="uid://i65c4givbyse" path="res://shoot.ogg" id="9_48roe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf1dt"]
 radius = 209.09
@@ -16,13 +16,15 @@ radius = 209.09
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1tu2"]
 radius = 107.643
 
-[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_mouseController")]
+[node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_mouseController", "_shootingSound")]
+scale = Vector2(1.64, 1.6)
 script = ExtResource("1_ujs8n")
 _bubbleScene = ExtResource("2_e1ta5")
 _mouseController = NodePath("MouseControl")
+_shootingSound = NodePath("ShotSoundPlayer")
 
 [node name="Shield" type="Sprite2D" parent="."]
-position = Vector2(537, 214)
+position = Vector2(371.366, 374.625)
 scale = Vector2(1.04889, 0.820313)
 
 [node name="CollisionDetector2" type="Area2D" parent="Shield"]
@@ -37,7 +39,7 @@ scale = Vector2(1.36, 1.36)
 shape = SubResource("CircleShape2D_mf1dt")
 
 [node name="BubbleZone" type="Sprite2D" parent="."]
-position = Vector2(501, 35)
+position = Vector2(335.366, 195.625)
 scale = Vector2(1.04687, 0.820313)
 script = ExtResource("4_wp76h")
 
@@ -134,9 +136,10 @@ position = Vector2(170.031, 301.105)
 scale = Vector2(0.45851, 0.487619)
 
 [node name="MouseControl" type="Sprite2D" parent="."]
-position = Vector2(537, 578)
+position = Vector2(371.366, 738.625)
 scale = Vector2(1.22527, 1.375)
 texture = ExtResource("3_epcbt")
+offset = Vector2(0, -43.375)
 script = ExtResource("4_4hgru")
 
 [node name="CollisionDetector" type="Area2D" parent="MouseControl"]
@@ -144,13 +147,13 @@ scale = Vector2(0.833333, 0.9)
 script = ExtResource("7_hs8l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseControl/CollisionDetector"]
-position = Vector2(0, -5.65657)
+position = Vector2(2.3647, -46.8687)
 shape = SubResource("CircleShape2D_h1tu2")
 debug_color = Color(0.875752, 0.262675, 0.567338, 0.42)
 
-[node name="ChanceManager" type="Sprite2D" parent="."]
-position = Vector2(85, 557)
-scale = Vector2(2.2, 1.59414)
-texture = ExtResource("5_g723b")
-centered = false
+[node name="ChanceManager" type="Node" parent="."]
 script = ExtResource("6_8m3ab")
+
+[node name="ShotSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_48roe")
+volume_db = 8.0
