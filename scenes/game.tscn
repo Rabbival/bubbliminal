@@ -11,16 +11,17 @@
 [ext_resource type="AudioStream" uid="uid://i65c4givbyse" path="res://audio/shoot.ogg" id="9_48roe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf1dt"]
-radius = 209.09
+radius = 241.619
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1tu2"]
-radius = 120.06
+radius = 135.009
 
 [sub_resource type="LabelSettings" id="LabelSettings_wysqq"]
-font_size = 80
+font_size = 72
 
 [node name="BubblesContainer" type="Node2D" node_paths=PackedStringArray("_mouseController", "_shootingSound", "_scoreLabel")]
-scale = Vector2(1.64, 1.6)
+position = Vector2(123, 69)
+scale = Vector2(1.02631, 1.00819)
 script = ExtResource("1_ujs8n")
 _bubbleZoneScene = ExtResource("2_nu783")
 _bubbleScene = ExtResource("2_e1ta5")
@@ -29,7 +30,7 @@ _shootingSound = NodePath("ShotSoundPlayer")
 _scoreLabel = NodePath("Label")
 
 [node name="Shield" type="Sprite2D" parent="."]
-position = Vector2(371.366, 374.625)
+position = Vector2(176.829, 125)
 scale = Vector2(1.04889, 0.820313)
 
 [node name="CollisionDetector2" type="Area2D" parent="Shield"]
@@ -39,23 +40,24 @@ disable_mode = 1
 script = ExtResource("3_a646t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield/CollisionDetector2"]
-position = Vector2(-48.3721, 53.2653)
+position = Vector2(-47.418, 125.9)
 scale = Vector2(1.36, 1.36)
 shape = SubResource("CircleShape2D_mf1dt")
 
 [node name="MouseControl" type="Sprite2D" parent="."]
-position = Vector2(371.366, 738.625)
+position = Vector2(181.098, 476.875)
 scale = Vector2(1.22527, 1.375)
 texture = ExtResource("3_epcbt")
 offset = Vector2(0, -43.375)
 script = ExtResource("4_4hgru")
 
 [node name="CollisionDetector" type="Area2D" parent="MouseControl"]
+position = Vector2(9.95301, -7.72733)
 scale = Vector2(0.833333, 0.9)
 script = ExtResource("7_hs8l5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseControl/CollisionDetector"]
-position = Vector2(2.3647, -42.3232)
+position = Vector2(-10.7733, -42.3232)
 shape = SubResource("CircleShape2D_h1tu2")
 debug_color = Color(0.875752, 0.262675, 0.567338, 0.42)
 
@@ -63,13 +65,14 @@ debug_color = Color(0.875752, 0.262675, 0.567338, 0.42)
 script = ExtResource("6_8m3ab")
 
 [node name="ShotSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(23.7805, 503.75)
 stream = ExtResource("9_48roe")
 volume_db = 8.0
 
 [node name="Label" type="Label" parent="."]
-offset_left = 51.2195
-offset_top = 912.5
-offset_right = 639.22
-offset_bottom = 1022.5
+offset_left = -126.667
+offset_top = 858.965
+offset_right = 461.334
+offset_bottom = 968.965
 text = "turns taken: "
 label_settings = SubResource("LabelSettings_wysqq")

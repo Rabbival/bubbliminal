@@ -36,7 +36,7 @@ public partial class MouseControl : Node2D
         Vector2 direction = mousePosition - GlobalPosition;
         float angle = direction.Angle() + Mathf.Pi / 2;
 
-		angle = Mathf.Clamp(angle, -Mathf.Pi / 2, Mathf.Pi / 2);
+		angle = Mathf.Clamp(angle, -Mathf.Pi / 3, Mathf.Pi / 3);
 
 		if (mousePosition.Y < GlobalPosition.Y)
         {

@@ -24,6 +24,7 @@ font_color = Color(0.940636, 0.940636, 0.940636, 1)
 font_size = 80
 
 [node name="App" type="Node2D" node_paths=PackedStringArray("_bubblesContainer", "_gameWonLabel")]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_1naqk")
 _bubblesContainer = NodePath("BubblesContainer")
 _gameWonLabel = NodePath("GameWonLabel")
@@ -39,8 +40,8 @@ scale = Vector2(1.8653, 1.84)
 texture = ExtResource("6_xu677")
 
 [node name="BubblesContainer" parent="." node_paths=PackedStringArray("_instructionsCanvas") instance=ExtResource("7_ewkpa")]
-position = Vector2(118, 115)
-scale = Vector2(1.32685, 1.42485)
+position = Vector2(390, 414)
+scale = Vector2(1.2, 1.25)
 _instructionsCanvas = NodePath("../Instructions")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -50,9 +51,9 @@ scale = Vector2(30.88, 41.989)
 color = Color(0, 0, 0, 1)
 
 [node name="Instructions" type="CanvasLayer" parent="." node_paths=PackedStringArray("blackScreen", "bubblesContainer")]
-offset = Vector2(-450, 450)
-scale = Vector2(1.8, 1.8)
-transform = Transform2D(1.8, 0, 0, 1.8, -450, 450)
+offset = Vector2(-220, 265)
+scale = Vector2(0.9, 0.9)
+transform = Transform2D(0.9, 0, 0, 0.9, -220, 265)
 script = ExtResource("1_bwx1b")
 blackScreen = NodePath("../ColorRect")
 bubblesContainer = NodePath("../BubblesContainer")
@@ -90,7 +91,7 @@ offset_left = 1380.0
 offset_top = -4611.44
 offset_right = -2324.0
 offset_bottom = -6145.56
-text = "The fire destructs"
+text = "The fire destructs,"
 label_settings = SubResource("LabelSettings_48wmj")
 metadata/_edit_use_anchors_ = true
 
@@ -105,7 +106,7 @@ offset_left = 1371.2
 offset_top = -4641.87
 offset_right = -2228.8
 offset_bottom = -6123.98
-text = "The oil spreads the destruction"
+text = "The oil spreads the destruction."
 label_settings = SubResource("LabelSettings_kk8nc")
 metadata/_edit_use_anchors_ = true
 
@@ -119,7 +120,7 @@ anchor_bottom = 6.93864
 offset_left = 0.00012207
 offset_right = -3676.0
 offset_bottom = -1534.11
-text = "Neutral does nothing"
+text = "Neutral does nothing."
 label_settings = SubResource("LabelSettings_kwk1d")
 metadata/_edit_use_anchors_ = true
 
@@ -136,7 +137,7 @@ offset_right = -2259.0
 offset_bottom = -6093.56
 text = "R key may be pressed
 If you'd like to give yourself
-Another fresh start
+Another fresh start.
 
       --(destroy everything)--
 

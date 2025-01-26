@@ -11,7 +11,7 @@ radius = 107.643
 radius = 92.0972
 
 [node name="Bubble" type="Sprite2D"]
-scale = Vector2(0.22387, 0.202055)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_jrx3j")
 offset = Vector2(-10.47, 34.285)
 script = ExtResource("1_sm2la")

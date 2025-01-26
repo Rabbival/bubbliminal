@@ -208,15 +208,16 @@ public partial class Bubble : Sprite2D
 	}
 
 	private void MoveUntilOutOfScreen(Vector2 newCalculatedPosition){
-		bool outOfScreenPositiveX = newCalculatedPosition.X > GetViewportRect().Size.X;
-		bool outOfScreenNegativeX = newCalculatedPosition.X < 0;
-		bool outOfScreenPositiveY = newCalculatedPosition.Y > GetViewportRect().Size.Y;
-		bool outOfScreenNegativeY = newCalculatedPosition.Y < 0;
+		bool outOfScreenPositiveX = GlobalPosition.X > GetViewportRect().Size.X;
+		bool outOfScreenNegativeX = GlobalPosition.X < 0;
+		bool outOfScreenPositiveY = GlobalPosition.Y > GetViewportRect().Size.Y;
+		bool outOfScreenNegativeY = GlobalPosition.Y < 0;
 		if (outOfScreenPositiveX 
 			|| outOfScreenNegativeX 
 			|| outOfScreenPositiveY 
 			|| outOfScreenNegativeY
 		){
+			DebugPrinter.Print("Exploding" + Name + " due to out of screen", LogCategory.Bubble);
 			DeclarePositionTweenDone();
 			ExplodeThenDestory();
 		}else{
