@@ -61,28 +61,35 @@ public partial class BubblesContainer : Node2D
     public override void _Input(InputEvent @event)
     {
 		if (Visible){
-			if (@event is InputEventMouseButton mouseMotion)
+			if (@event is InputEventMouseButton mouseEvent)
 			{
-				if (mouseMotion.Pressed && mouseMotion.ButtonIndex == MouseButton.Left)
+				if (mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
 				{
 					ShootControlledBubble();
 				}
-			}
+			}else if(@event is InputEventKey keyEvent){
+				if (keyEvent.Pressed && keyEvent.Keycode == Key.R)
+				{
+					RestartGame();
+				}
+			} 
 		}else{
 			if (_instructionsCanvas.Visible){
 				_instructionsCanvas.HandleInput(@event);
-			}else{
-				ListenToRestartRequests(@event);
+			}else if (@event is InputEventKey keyEvent && 
+				keyEvent.Pressed || 
+				@event is InputEventMouseButton mouseEvent && 
+				mouseEvent.Pressed
+			){
+				RestartGame();
 			}
 		}
     }
 
-	private void ListenToRestartRequests(InputEvent @event){
-		if (@event is InputEventKey keyEvent && keyEvent.Pressed || @event is InputEventMouseButton mouseEvent && mouseEvent.Pressed){
-			DebugPrinter.Print("Restarting game", LogCategory.BubbleContainer);
-			EmitSignal(SignalName.GameRestarted);
-			_Ready();
-		}
+	private void RestartGame(){
+		DebugPrinter.Print("Restarting game", LogCategory.BubbleContainer);
+		EmitSignal(SignalName.GameRestarted);
+		_Ready();
 	}
 
 	private void ShootControlledBubble()

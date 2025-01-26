@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0pbodwtsm8gr"]
+[gd_scene load_steps=13 format=3 uid="uid://d0pbodwtsm8gr"]
 
 [ext_resource type="Script" path="res://scripts/App.cs" id="1_1naqk"]
 [ext_resource type="Script" path="res://scripts/Instructions/InstructionsCanvas.cs" id="1_bwx1b"]
@@ -16,6 +16,9 @@ font_color = Color(0.743657, 0.655436, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kwk1d"]
 font_color = Color(0.604331, 0.608146, 0.564348, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7tqbn"]
+font_color = Color(0.940636, 0.940636, 0.940636, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hjbwy"]
 font_size = 80
@@ -65,10 +68,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="Instructions/ProgressBar"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -5.75
-anchor_top = 19.963
-anchor_right = 10.25
-anchor_bottom = 26.7037
+anchor_left = -5.5
+anchor_top = 17.3498
+anchor_right = 10.5
+anchor_bottom = 24.0905
 offset_right = 176.0
 offset_bottom = 49.0
 scale = Vector2(2.45, 2.45)
@@ -131,9 +134,14 @@ offset_left = 1380.0
 offset_top = -4611.44
 offset_right = -2259.0
 offset_bottom = -6093.56
-text = "      --(destroy everything)--
+text = "R key may be pressed
+If you'd like to give yourself
+Another fresh start
+
+      --(destroy everything)--
 
 Press any key to start"
+label_settings = SubResource("LabelSettings_7tqbn")
 metadata/_edit_use_anchors_ = true
 
 [node name="Audio" type="AudioListener2D" parent="."]
