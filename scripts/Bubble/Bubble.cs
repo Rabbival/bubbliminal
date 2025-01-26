@@ -114,6 +114,7 @@ public partial class Bubble : Sprite2D
 
 	public async void ExplodeThenDestory(){
 		BubblesConfig.PopSound.Play();
+		_deemedForDestruction = true;
 		TweenScale();
 		FadeOut();
 		await Task.Delay((int)(BubblesConfig.DespawnDuration * 1000));
